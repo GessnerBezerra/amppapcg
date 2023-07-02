@@ -79,6 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "../index.html";
     return;
   }
+  // salvarNaTabela(listaRecados);
 
   salvarNoCard(listaRecados);
 });
@@ -109,49 +110,49 @@ function adicionarNovoRegistro(): void {
 
 //---------FUNÇÃO PARA CRIAÇÃO DE TABELA--------------------
 
-// function salvarNaTabela(dadosrecados: Recados[]) {
-//   if (dadosrecados.length > 0) {
+function salvarNaTabela(dadosrecados: Recados[]) {
+  if (dadosrecados.length > 0) {
 
-//     for (const indice in dadosrecados) {
+    for (const indice in dadosrecados) {
 
-//       let indcString = dadosrecados[indice].indice;
-//       let indcNumber = +indcString;
-//       indcNumber= Number(indice);
-//       indcNumber++;
-//       indcString = indcNumber.toString();
-//       dadosrecados[indice].indice = indcString;
+      let indcString = dadosrecados[indice].indice;
+      let indcNumber = +indcString;
+      indcNumber= Number(indice);
+      indcNumber++;
+      indcString = indcNumber.toString();
+      dadosrecados[indice].indice = indcString;
 
-//       window.localStorage.setItem(
-//         "dados-usuario",
-//         JSON.stringify(listaUsuarios)
+      window.localStorage.setItem(
+        "dados-usuario",
+        JSON.stringify(listaUsuarios)
 
-//       );
+      );
 
-//       let novaLinha = document.createElement("tr");
-//       let colunaRegistro = document.createElement("td");
-//       let colunaTitulo = document.createElement("td");
-//       let colunaDescricao = document.createElement("td");
-//       let colunaAcoes = document.createElement("td");
+      let novaLinha = document.createElement("tr");
+      let colunaRegistro = document.createElement("td");
+      let colunaTitulo = document.createElement("td");
+      let colunaDescricao = document.createElement("td");
+      let colunaAcoes = document.createElement("td");
 
-//       novaLinha.appendChild(colunaRegistro);
-//       novaLinha.appendChild(colunaTitulo);
-//       novaLinha.appendChild(colunaDescricao);
-//       novaLinha.appendChild(colunaAcoes);
+      novaLinha.appendChild(colunaRegistro);
+      novaLinha.appendChild(colunaTitulo);
+      novaLinha.appendChild(colunaDescricao);
+      novaLinha.appendChild(colunaAcoes);
 
-//       tabelaDados.appendChild(novaLinha);
+      tabelaDados.appendChild(novaLinha);
 
-//       novaLinha.setAttribute("class", "informacoes");
-//       novaLinha.setAttribute("id", dadosrecados[indice].indice);
-//       colunaRegistro.innerHTML = dadosrecados[indice].indice;
-//       colunaTitulo.innerHTML = dadosrecados[indice].descricao;
-//       colunaDescricao.innerHTML = dadosrecados[indice].detalhamento;
-//       colunaAcoes.innerHTML = `
-//             <td><button type="button" value="" class="inf_botao" onclick="prepararEdicao(${indice})" id="inf_botao_editar">Editar</button></td>
-//             <td><button type="button" value="" class="inf_botao" onclick="apagando(${indice})" id="inf_botao_apagar">Apagar</button></td>
-//                                     `;
-//     }
-//   }
-// }
+      novaLinha.setAttribute("class", "informacoes");
+      novaLinha.setAttribute("id", dadosrecados[indice].indice);
+      colunaRegistro.innerHTML = dadosrecados[indice].indice;
+      colunaTitulo.innerHTML = dadosrecados[indice].descricao;
+      colunaDescricao.innerHTML = dadosrecados[indice].detalhamento;
+      colunaAcoes.innerHTML = `
+            <td><button type="button" value="" class="inf_botao" onclick="prepararEdicao(${indice})" id="inf_botao_editar">Editar</button></td>
+            <td><button type="button" value="" class="inf_botao" onclick="apagando(${indice})" id="inf_botao_apagar">Apagar</button></td>
+                                    `;
+    }
+  }
+}
 
 //-----------FUNÇÃO PARA CRIAR CARD---------------
 
@@ -255,29 +256,29 @@ function pegarDadosStorage() {
 
 //-------------- FUNÇÃO DE APAGAR DESABILITADA-----------
 
-// function apagando(indice: Recados[]): void {
-//   ModalApaga.show();
+function apagando(indice: Recados[]): void {
+  ModalApaga.show();
 
-//   let ApagarRecados= document.querySelector(
-//     "#ApagarRecados"
-//   ) as HTMLButtonElement;
+  let ApagarRecados= document.querySelector(
+    "#ApagarRecados"
+  ) as HTMLButtonElement;
 
-//   // let ApagarRecado = document.querySelector(
-//   //   "#ApagarRecado"
-//   // ) as HTMLButtonElement;
+  // let ApagarRecado = document.querySelector(
+  //   "#ApagarRecado"
+  // ) as HTMLButtonElement;
 
-//   ApagarRecados.addEventListener("click", () => {
-//     listaRecados.splice(indice, 1);
-//     salvarNoStorage(listaUsuarios);
-//     window.location.reload();
-//   });
+  ApagarRecados.addEventListener("click", () => {
+    listaRecados.splice(indice, 1);
+    salvarNoStorage(listaUsuarios);
+    window.location.reload();
+  });
 
-//   // ApagarRecado.addEventListener("click", () => {
-//   //   listaRecados.splice(indice, 1);
-//   //   salvarNoStorage(listaUsuarios);
-//   //   window.location.reload();
-//   // });
-// }
+  // ApagarRecado.addEventListener("click", () => {
+  //   listaRecados.splice(indice, 1);
+  //   salvarNoStorage(listaUsuarios);
+  //   window.location.reload();
+  // });
+}
 
 function cancelarEdicao() {
   botaoCancelar.setAttribute("onclick", `${limparCampos()}`);

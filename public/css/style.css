@@ -15,6 +15,20 @@ body {
   height: 100vh;
 }
 
+#img{
+  background-image: url('/public/imagens/ampappcg1.jpg');
+  background-repeat: round;
+width: 100px;
+height: 100px;
+}
+
+#img2 {
+  background-image: url('/public/imagens/avatar.png');
+  background-repeat: round;
+  width: 100px;
+  height: 100px;
+}
+
 div.container {
   border-radius: 10px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);

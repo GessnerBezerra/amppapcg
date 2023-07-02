@@ -103,6 +103,11 @@
     margin-top: 50px;
     margin-bottom: 10px;
   }
+
+    h3 {
+      margin-top: 50px;
+      margin-bottom: 10px;
+    }
   
   section#principal{
    margin-left: 15px;
@@ -110,8 +115,17 @@
    display: flex;
     flex-direction: column;
     align-items: flex-start;
-   top: 25px;
+  top: 24vh;
   }
+
+    section#principalCard {
+      margin-left: 15px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      top: 0vh;
+    }
   
   button.inf_botao{
     width: 80px;
@@ -182,11 +196,23 @@
     height: 25vh;
     position: fixed;
       width: 100%;
-      align-items: flex-start;
+      display: flex;
       flex-direction: row;
       top: 0;
       z-index: 999;
   }
+
+  #avatar{
+    background-image: url('/public/imagens/avatar.png');
+      background-repeat: no-repeat;
+        background-position: top;
+        background-size: contain;
+      width: 10vw;
+        height: 23vh;
+        margin-right: 3vw;
+        margin-bottom: 50px;
+  }
+
   #userHome{
     color: black;
     font-size: x-large;
@@ -198,7 +224,7 @@
 
   #recados{
     position: fixed;
-    margin: 20px;
+    margin-left: 75vw;
     z-index: 999;
     margin-top: 8vh;
    
