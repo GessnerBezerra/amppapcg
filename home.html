@@ -11,7 +11,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="./public/css/style_home.css" />
-    <link rel="icon" href="/public/imagens/ampappcg1.jpg">
+    <link rel="icon" href="/public/imagens/ampappcg1.jpg" />
     <title>amppapcg</title>
   </head>
   <body>
@@ -19,48 +19,59 @@
       <div id="avatar"></div>
       <div class="row inicio-2">
         <div class="col"><p id="userHome"></p></div>
-          <form id="recados">
-            <h3>Meus Recados</h3>
-            <input type="text" name="nome" class="campo_informacoes" id="descricao" placeholder="Descrição" />
-            <input type="text" name="nome" class="campo_informacoes" id="detalhamento" placeholder="Detalhamento" />
-            <input type="submit" value="Salvar" id="enviar_info" />
-            <input type="button" value="Atualizar" id="botao_atualizar" />
-            <input type="button" value="Cancelar" id="botao_cancelar" />
-          </form>
-        <div class="col">
-          <div id="sair">
-            <button class="btn btn-info" id="botaoSair" type="button">
-              SAIR
-            </button>
-          </div>
+        <div id="recados">
+          <h3>Lista de Drivres</h3>
+          <a
+            href="#"
+            id="modalCadast"
+            class="btn btn-primary"
+            role="button"
+            data-bs-toggle="button"
+            >Driver +</a
+          >
+        </div>
+        <!--  -->
+      </div>
+      <div class="col">
+        <div id="sair">
+          <button class="btn btn-info" id="botaoSair" type="button">
+            SAIR
+          </button>
         </div>
       </div>
     </div>
     <div class="container-fluid">
-      <section id="principal">
-        
-
-      
-
+      <!-- <section id="principal">
         <!-- Cabeçalho de uma possível tabela-->
-      
-            <!-- <table id="tabela-registros">
+
+        <!-- <table id="tabela-registros">
             <tr>
               <th>ID</th>
-              <th>Descrição</th>
-              <th>Detalhes</th>
+              <th>Nome</th>
+              <th>idade</th>
+              <th>rua</th>
+              <th>nº da rua</th>
+              <th>bairro</th>
+              <th>Cidade</th>
+              <th>Fone</th>
+              <th>CNH Nº</th>
+              <th>Catg CNH</th>
+              <th>Emição CNH</th>
+              <th>Venc CNH</th>
+              <th>Mod Veículo</th>
+              <th>Cor Veículo</th>
+              <th>Ano Veículo</th>
               <th>Ação </th>
             </tr>
           </table>  -->
-      </section>
+      </section> -->
 
       <!-- aqui vai os cards -->
       <section id="principalCard">
-        <section id="row-card">
+        <section id="row-card"></section>
       </section>
-    </section>
 
-      <!-- Modal apagar -->
+      <!-- Modal apagar apagar-->
 
       <div class="modal" tabindex="-1" id="modalApagarRecado">
         <div class="modal-dialog">
@@ -84,13 +95,148 @@
                 Cancelar
               </button>
 
-              <button type="button" class="btn btn-primary" id="ApagarRecados" id="liveToastBtn">
+              <button
+                type="button"
+                class="btn btn-primary"
+                id="ApagarRecados"
+                id="liveToastBtn"
+              >
                 Deletar
               </button>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- Modal cadastrar-->
+    
+      <div class="modal" tabindex="-1" id="modalCadastrar">
+        <div class="modal-dialog modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Insira seus dados</h5>
+              <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+            </div>
+            <div class="modal-body">
+              
+              <form id="formCadastr" class="col g-3">
+                <div id="inputCdtr" class="col-auto">
+                  <label for="nome" class="visually-hidden">Nome completo</label>
+                 
+                  <input required type="text" name="nome" class="campo_informacoes" id="nome" placeholder="Nome completo" />
+                </div>
+                <div id="inputCdtr" class="col-auto">
+                  <label for="nome" class="visually-hidden">E-mail</label>
+                
+                  <input required type="email" name="nome" class="campo_informacoes" id="login" placeholder="nome@exemplo.com" />
+                </div>
+                <div id="inputCdtr" class="col g-3">
+                 
+                  <input required type="number" name="nome" class="campo_informacoes" id="idade" placeholder="idade" />
+                </div>
+                <div id="inputCdtr" class="col g-3">
+                
+                  <input required type="number" name="nome" class="campo_informacoes" id="input-cadastro-cpf" placeholder="CPF" />
+                </div>
+                <!-- <input
+                              required
+                              type="number"
+                              name="nome"
+                              class="campo_informacoes"
+                              id="input-cadastro-cpf"
+                              placeholder="CPF"
+                            /> -->
+                <div id="inputCdtr" class="col g-3">
+                
+                  <input required type="text" name="nome" class="campo_informacoes" id="rua" placeholder="rua" />
+                </div>
+                <div id="inputCdtr" class="col g-3">
+                  
+                  <input required type="text" name="nome" class="campo_informacoes" id="numRua" placeholder="nº da rua" />
+                </div>
+                <div id="inputCdtr" class="col g-3">
+                 
+                  <input required type="text" name="nome" class="campo_informacoes" id="bairro" placeholder="bairro" />
+                </div>
+                <div id="inputCdtr" class="col g-3">
+                
+                  <input required type="text" name="nome" class="campo_informacoes" id="cidade" placeholder="cidade" />
+                </div>
+                <div id="inputCdtr" class="col g-3">
+                 
+                  <input required type="text" name="nome" class="campo_informacoes" id="fone" placeholder="Fone Contato" />
+                </div>
+                <div id="inputCdtr" class="col g-3">
+                
+                  <input required type="number" name="nome" class="campo_informacoes" id="cnh" placeholder="CNH Nº" />
+                </div>
+                <div id="inputCdtr" class="col g-3">
+                
+                  <input required type="text" name="nome" class="campo_informacoes" id="categCnh" placeholder="Categoria da CNH" />
+                </div>
+                <div id="inputCdtr" class="col g-3 input-group">
+                  <label class="input-group-text" id="basic-addon3">Emição da CNH</label>
+                  <input required type="date" name="nome" class="campo_informacoes" id="dataCnh" placeholder="Data de emição da CNH" />
+                </div>
+                <div id="inputCdtr" class="col g-3 input-group">
+                  <label class="input-group-text" id="basic-addon3">Vencimento CNH</label>
+                  <input required type="date" name="nome" class="campo_informacoes" id="validadecnh" placeholder="Vencimento CNH" />
+                </div>
+                <div id="inputCdtr" class="col g-3">
+                  <!-- <label for="inputPassword2" class="visually-hidden">Password</label> -->
+                  <input required type="text" name="nome" class="campo_informacoes" id="modlCarro" placeholder="Modelo do Veículo" />
+                </div>
+                <div id="inputCdtr" class="col g-3">
+                  <!-- <label for="inputPassword2" class="visually-hidden">Password</label> -->
+                  <input required type="text" name="nome" class="campo_informacoes" id="corCarro" placeholder="Cor do Veículo" />
+                </div>
+                <div id="inputCdtr" class="col g-3">
+                  <!-- <label for="inputPassword2" class="visually-hidden">Password</label> -->
+                  <input required type="number" name="nome" class="campo_informacoes" id="anoCarro" placeholder="Ano do Veículo" />
+                </div>
+                <div id="inputCdtr" class="col-auto">
+                      <!-- <input type="text" readonly="" class="form-control-plaintext" id="staticEmail2" value="email@example.com"> -->
+                  <input required type="text" name="nome" class="campo_informacoes" id="placa" placeholder="Placa" />
+                </div>
+                <div id="inputCdtr" class="col-auto">
+                  <label for="nome" class="visually-hidden">Nome completo</label>
+                  <!-- <input type="text" readonly="" class="form-control-plaintext" id="staticEmail2" value="email@example.com"> -->
+                  <input required type="password" name="nome" class="campo_informacoes" id="senha" placeholder="Senha" />
+                </div>
+                <div id="inputCdtr" class="col-auto">
+                  <label for="nome" class="visually-hidden">Nome completo</label>
+                  <!-- <input type="text" readonly="" class="form-control-plaintext" id="staticEmail2" value="email@example.com"> -->
+                  <input required type="password" name="nome" class="campo_informacoes" id="senha-confirm" placeholder="Repita a senha" />
+                </div>
+                <div id="inputCdtr" class="col-auto">
+                  <!-- <button type="submit" class="btn btn-primary mb-3">Confirm identity</button> -->
+                  <button type="submit" class="btn btn-primary" id="CadastrarRecados">
+                    Cadastrar
+                  </button>
+                  <input type="button" value="Atualizar" id="botao_atualizar" />
+                  <input type="button" value="Cancelar" id="botao_cancelar" />
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+                id="modalsair"
+                style="background-color: red"
+                id="liveToastBtn1"
+              >
+                Sair
+              </button>
+
+             
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
 
       <!-- Toast Apagar -->
       <!-- <div
@@ -124,37 +270,53 @@
       </div> -->
     </div>
 
-     <!-- Toast-->
+    <!-- Toast-->
 
+    <div class="toast-container position-fixed top-0 end-0 p-3" id="toastApaga">
+      <div
+        id="liveToast"
+        class="toast bg-success"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <div class="toast-header">
+          <i class="bi bi-bootstrap-fill"></i>
+          <strong class="me-auto ms-2">ALERTA!</strong>
 
-  <div class="toast-container position-fixed top-0 end-0 p-3" id="toastApaga">
-    <div id="liveToast" class="toast bg-success" role="alert" aria-live="assertive" aria-atomic="true">
-      <div class="toast-header">
-        <i class="bi bi-bootstrap-fill"></i>
-        <strong class="me-auto ms-2">ALERTA!</strong>
-
-        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-      </div>
-      <div class="toast-body text-light">
-        Exclusão dos dados confirmada!
-      </div>
-    </div>
-  </div>
-
-  <div class="toast-container position-fixed top-0 end-0 p-3 ">
-    <div id="liveToast1" class="toast bg-danger" role="alert" aria-live="assertive" aria-atomic="true">
-      <div class="toast-header">
-        <i class="bi bi-bootstrap-fill"></i>
-        <strong class="me-auto ms-2">ALERTA!</strong>
-
-        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-      </div>
-      <div class="toast-body text-light ">
-        Exclusão dos dados CANCELADA!
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="toast-body text-light">Exclusão dos dados confirmada!</div>
       </div>
     </div>
-  </div>
 
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+      <div
+        id="liveToast1"
+        class="toast bg-danger"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <div class="toast-header">
+          <i class="bi bi-bootstrap-fill"></i>
+          <strong class="me-auto ms-2">ALERTA!</strong>
+
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="toast-body text-light">Exclusão dos dados CANCELADA!</div>
+      </div>
+    </div>
 
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"

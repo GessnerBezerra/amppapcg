@@ -1,80 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="./public/css/style.css">
-    <link rel="icon" href="/public/imagens/ampappcg1.jpg">
+    <link rel="stylesheet" href="./public/css/style.css" />
+    <link rel="icon" href="/public/imagens/ampappcg1.jpg" />
     <title>amppapcg</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <!-- DIV CONTAINER DE TUDO ///-->
     <h2><strong>Seja bem vindo!</strong></h2>
     <div class="container" id="container">
+      <!-- DIV CONTAINER DO FORMULARIO CADASTRO-->
+      <div class="form-container cadastro-container">
+        <div id="titulo"></div>
+        <form id="formulario-cadastro" class="col g-3">
+          <div id="img2"></div>
+          <h3>Criar uma conta</h3>
+          <span>Prencha os dados abaixo para realizar seu cadastro</span>
 
-        <!-- DIV CONTAINER DO FORMULARIO CADASTRO-->
-        <div class="form-container cadastro-container">
-            <form id="formulario-cadastro">
-                <div id="img2"></div>
-                <h3>Criar uma conta</h3>
-                <span>Use seu e-mail para realizar seu cadastro</span>
+          <div id="inputs">
+            <input
+              required
+              type="text"
+              placeholder="Nome Completo"
+              id="input-cadastro-nome"
+            />
+            <input
+              required
+              type="email"
+              placeholder="E-mail"
+              id="input-cadastro-email"
+            />
+            <input
+              required
+              type="number"
+              name="nome"
+              class="campo_informacoes"
+              id="input-cadastro-cpf"
+              placeholder="CPF"
+            />
+            <input
+              required
+              type="number"
+              name="nome"
+              class="campo_informacoes"
+              id="idade"
+              placeholder="idade"
+            />
+            <input
+              required
+              type="text"
+              name="nome"
+              class="campo_informacoes"
+              id="rua"
+              placeholder="rua"
+            />
+            <input
+              required
+              type="text"
+              name="nome"
+              class="campo_informacoes"
+              id="numRua"
+              placeholder="nº da rua"
+            />
+            <input
+              required
+              type="text"
+              name="nome"
+              class="campo_informacoes"
+              id="bairro"
+              placeholder="bairro"
+            />
+            <input
+              required
+              type="text"
+              name="nome"
+              class="campo_informacoes"
+              id="cidade"
+              placeholder="cidade"
+            />
+            <input
+              required
+              type="text"
+              name="nome"
+              class="campo_informacoes"
+              id="fone"
+              placeholder="Fone Contato"
+            />
+            <input
+              required
+              type="number"
+              name="nome"
+              class="campo_informacoes"
+              id="cnh"
+              placeholder="CNH Nº"
+            />
+            <input
+              required
+              type="text"
+              name="nome"
+              class="campo_informacoes"
+              id="categCnh"
+              placeholder="Categoria da CNH"
+            />
+            <input
+              required
+              type="date"
+              name="nome"
+              class="campo_informacoes"
+              id="dataCnh"
+              placeholder="Data de emição da CNH"
+            />
+            <input
+              required
+              type="date"
+              name="nome"
+              class="campo_informacoes"
+              id="validadecnh"
+              placeholder="Vencimento CNH"
+            />
+            <input
+              required
+              type="text"
+              name="nome"
+              class="campo_informacoes"
+              id="modlCarro"
+              placeholder="Modelo do Veículo"
+            />
+            <input
+              required
+              type="text"
+              name="nome"
+              class="campo_informacoes"
+              id="corCarro"
+              placeholder="Cor do Veículo"
+            />
+            <input
+              required
+              type="number"
+              name="nome"
+              class="campo_informacoes"
+              id="anoCarro"
+              placeholder="Ano do Veículo"
+            />
+            <input
+              required
+              type="text"
+              name="nome"
+              class="campo_informacoes"
+              id="placa"
+              placeholder="Placa"
+            />
+            <input
+              required
+              type="password"
+              placeholder="Senha"
+              id="input-cadastro-senha"
+            />
+            <input
+              required
+              type="password"
+              placeholder="Repita a Senha"
+              id="input-confirma-senha"
+            />
+          </div>
 
-                <input type="text" placeholder="Nome Completo" id="input-cadastro-nome">
-                <input type="email" placeholder="E-mail" id="input-cadastro-email">
-                <input type="password" placeholder="Senha" id="input-cadastro-senha">
+          <button type="submit">Cadastrar</button>
+          <a href="/welcome.html">Clique para retornar à pagima principal</a>
+        </form>
+      </div>
 
-                <button type="submit">Cadastrar</button>
-                <a href="/welcome.html">Clique para retornar à pagima principal</a>
-            </form>
+      <!-- DIV CONTAINER DO FORMULARIO LOGIN-->
+      <div class="form-container login-container">
+        <form id="formulario-login">
+          <div id="img"></div>
+          <h1>Login</h1>
+          <span>Use sua conta para acessar o sistema</span>
+
+          <input type="email" placeholder="E-mail" id="input-login-email" />
+          <input type="password" placeholder="Senha" id="input-login-senha" />
+
+          <!-- <a href="#">Esqueceu sua senha?</a> -->
+          <button type="submit">Entrar</button>
+          <a href="/welcome.html">Clique para retornar à pagima principal</a>
+        </form>
+      </div>
+
+      <!-- DIV DO BACKGROUND BONITÃO - OVERLAY -->
+      <div class="overlay-container">
+        <div class="overlay">
+          <!-- OVERLAY DIRETA -->
+          <div class="padrao-overlay overlay-direita">
+            <h1>Olá, Usuário!</h1>
+            <p>
+              Cadastra-se utilizando seus dados pessoais e comece sua jornada
+              conosco.
+            </p>
+            <button type="button" class="btn-transparente" id="btn-cadastrar">
+              Criar uma Conta
+            </button>
+          </div>
+
+          <!-- OVERLAY ESQUERDA -->
+          <div class="padrao-overlay overlay-esquerda">
+            <h1>Bem vindo de volta!</h1>
+            <p>
+              Para se manter conectado faça login com suas informações pessoais
+            </p>
+            <button type="button" class="btn-transparente" id="btn-acessar">
+              Acessar minha Conta
+            </button>
+          </div>
         </div>
-
-        <!-- DIV CONTAINER DO FORMULARIO LOGIN-->
-        <div class="form-container login-container">
-            <form id="formulario-login">
-                <div id="img"></div>
-                <h1>Login</h1>
-                <span>Use sua conta para acessar o sistema</span>
-
-                <input type="email" placeholder="E-mail" id="input-login-email">
-                <input type="password" placeholder="Senha" id="input-login-senha">
-
-                <!-- <a href="#">Esqueceu sua senha?</a> -->
-                <button type="submit">Entrar</button>
-                <a href="/welcome.html">Clique para retornar à pagima principal</a>
-            </form>
-        </div>
-
-        <!-- DIV DO BACKGROUND BONITÃO - OVERLAY -->
-        <div class="overlay-container">
-            <div class="overlay">
-                <!-- OVERLAY DIRETA -->
-                <div class="padrao-overlay overlay-direita">
-                    <h1>Olá, Driver!</h1>
-                    <p>Cadastra-se utilizando seus dados pessoais e comece sua jornada conosco.</p>
-                    <button type="button" class="btn-transparente" id="btn-cadastrar">Criar uma Conta</button>
-                </div>
-
-                <!-- OVERLAY ESQUERDA -->
-                <div class="padrao-overlay overlay-esquerda">
-                    <h1>Bem vindo de volta!</h1>
-                    <p>Para se manter conectado faça login com suas informações pessoais</p>
-                    <button type="button" class="btn-transparente" id="btn-acessar">Acessar minha Conta</button>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
     <footer>
-        <p>Criado por Gessner Bezerra &copy;<a href=""
-                target="_blank">Art&Games</a> - 2023</p>
+      <p>
+        Criado por Gessner Bezerra &copy;<a href="" target="_blank"
+          >Art&Games</a
+        >
+        - 2023
+      </p>
     </footer>
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
@@ -87,6 +242,5 @@
       crossorigin="anonymous"
     ></script>
     <script src="./dist/index.js"></script>
-</body>
-
+  </body>
 </html>

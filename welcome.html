@@ -1,24 +1,476 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
-    <link rel="stylesheet" href="" />
-    <link rel="icon" href="/public/imagens/ampappcg1.jpg">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/public/css/welcome.css" />
+    <link rel="icon" href="/public/imagens/ampappcg1.jpg" />
     <title>amppapcg</title>
-</head>
-<body>
+  </head>
+  <body>
     <!-- paginma de boas vindas comum a todos -->
+    <header>
+      <nav class="navbar navbar-expand-md navbar-light bg-white absolute-top">
+        <div class="container">
+          <button
+            class="navbar-toggler order-2 order-md-1"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target=".navbar-collapse"
+            aria-controls="navbar-left navbar-right"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div id="img2"></div>
+          <div
+            class="collapse navbar-collapse order-3 order-md-2"
+            id="navbar-left"
+          >
+          
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item dropdown active">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="dropdown01"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  >Home</a
+                >
+                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                  <a class="dropdown-item" href="">One column</a>
+                  <a class="dropdown-item" href="">Two column</a>
+                  <a class="dropdown-item" href="">Three column</a>
+                  <a class="dropdown-item" href="">Four column</a>
+                  <a class="dropdown-item" href="">Featured posts</a>
+                  <a class="dropdown-item" href="">Full width</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="dropdown02"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  >Posts</a
+                >
+                <div class="dropdown-menu" aria-labelledby="dropdown02">
+                  <a class="dropdown-item" href="">Image</a>
+                  <a class="dropdown-item" href="">Video</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+          
+          
+          <a id="logo-centro" class="navbar-brand mx-auto order-1 order-md-3" href="index.html"
+            ><h5>Clique na logo abaixo para se cadastrar</h5><p id="img"></p></a>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
-        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-        crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/b6008d9d9d.js" crossorigin="anonymous"></script>
-    <script src="./dist/home.js"></script>
-</body>
+          <div
+            class="collapse navbar-collapse order-4 order-md-4"
+            id="navbar-right"
+          >
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="page-about.html">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="page-contact.html">Contact</a>
+              </li>
+            </ul>
+            <form class="form-inline" role="search">
+              <input
+                class="search js-search form-control form-control-rounded me-sm-2"
+                type="text"
+                title="Enter search query here.."
+                placeholder="Search.."
+                aria-label="Search"
+              />
+            </form>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="main pt-4">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <article class="card mb-4">
+              <header class="card-header">
+                <div class="card-meta">
+                  <a href="#"
+                    ><time
+                      class="timeago"
+                      datetime="2021-09-26 20:00"
+                      timeago-id="1"
+                      >1 ano atrás</time
+                    ></a
+                  >
+                  em <a href="page-category.html">Viagem</a>
+                </div>
+                <a href="post-image.html">
+                  <h4 class="card-title">Como podemos cantar sobre o amor?</h4>
+                </a>
+              </header>
+              <a href="post-image.html">
+                <img
+                  class="card-img"
+                  src="/public/img/articles/18.jpg"
+                  alt=""
+                />
+              </a>
+              <div class="card-body">
+                <p class="card-text">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius,
+                  quam magni recusandae, sapiente deleniti molestias earum et,
+                  doloribus tenetur tempore provident voluptates delectus
+                  pariatur. Dicta minus quaerat non quasi magni?
+                </p>
+              </div>
+            </article>
+            <!-- /.card -->
+
+            <article class="card mb-4">
+              <header class="card-header">
+                <div class="card-meta">
+                  <a href="#"
+                    ><time
+                      class="timeago"
+                      datetime="2021-09-03 20:00"
+                      timeago-id="2"
+                      >1 ano atrás</time
+                    ></a
+                  >
+                  <a href="page-category.html">com estilo</a>
+                </div>
+                <a href="post-image.html">
+                  <h4 class="card-title">
+                    Ah, acho que os azuis ficariam melhor!
+                  </h4>
+                </a>
+              </header>
+              <a href="post-image.html">
+                <img
+                  class="card-img"
+                  src="/public/img/articles/22.jpg"
+                  alt=""
+                />
+              </a>
+              <div class="card-body">
+                <p class="card-text">
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Assumenda distinctio corrupti optio hic, inventore ipsam porro
+                  obcaecati, mollitia perspiciatis modi doloribus numquam
+                  temporibus, minima voluptatum culpa? Autem aliquid nulla
+                  minus?.
+                </p>
+              </div>
+            </article>
+            <!-- /.card -->
+          </div>
+          <div class="col-md-4">
+            <article class="card mb-4">
+              <header class="card-header">
+                <div class="card-meta">
+                  <a href="#"
+                    ><time
+                      class="timeago"
+                      datetime="2021-07-16 20:00"
+                      timeago-id="3"
+                      >1 ano atrás</time
+                    ></a
+                  >
+                  <a href="page-category.html">trabalhando</a>
+                </div>
+                <a href="post-image.html">
+                  <h4 class="card-title">
+                    Como podemos, como podemos cantar sobre nós mesmos?
+                  </h4>
+                </a>
+              </header>
+              <a href="post-image.html">
+                <img class="card-img" src="/public/img/articles/3.jpg" alt="" />
+              </a>
+              <div class="card-body">
+                <p class="card-text">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Repudiandae voluptas omnis similique atque exercitationem
+                  aliquam amet veritatis ab ullam nam, est, aperiam repellat
+                  numquam odio alias, accusamus officia tempora! Totam..
+                </p>
+              </div>
+            </article>
+            <!-- /.card -->
+
+            <article class="card mb-4">
+              <header class="card-header">
+                <div class="card-meta">
+                  <a href="#"
+                    ><time
+                      class="timeago"
+                      datetime="2021-09-15 20:00"
+                      timeago-id="4"
+                      >1 ano atrás</time
+                    ></a
+                  >
+                  no <a href="page-category.html">estilo</a>
+                </div>
+                <a href="post-image.html">
+                  <h4 class="card-title">O rei é feito de papel</h4>
+                </a>
+              </header>
+              <a href="post-image.html">
+                <img
+                  class="card-img"
+                  src="/public/img/articles/20.jpg"
+                  alt=""
+                />
+              </a>
+              <div class="card-body">
+                <p class="card-text">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Placeat exercitationem qui fuga temporibus provident non
+                  veniam ipsa ab ipsum enim ad esse doloremque suscipit eos
+                  expedita in, eum nihil alias!.
+                </p>
+              </div>
+            </article>
+            <!-- /.card -->
+          </div>
+          <div class="col-md-4">
+            <article class="card mb-4">
+              <header class="card-header">
+                <div class="card-meta">
+                  <a href="#"
+                    ><time
+                      class="timeago"
+                      datetime="2021-08-24 20:00"
+                      timeago-id="5"
+                      >1 ano atrás</time
+                    ></a
+                  >
+                  no <a href="page-category.html">trabalho</a>
+                </div>
+                <a href="post-image.html">
+                  <h4 class="card-title">Chorando no noticiário</h4>
+                </a>
+              </header>
+              <a href="post-image.html">
+                <img class="card-img" src="/public/img/articles/5.jpg" alt="" />
+              </a>
+              <div class="card-body">
+                <p class="card-text">
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo
+                  quasi cum illum nesciunt deleniti numquam, explicabo mollitia
+                  voluptate consectetur quis molestiae fuga iste reprehenderit
+                  tempora, et praesentium. Animi, dolorem debitis.
+                </p>
+              </div>
+            </article>
+            <!-- /.card -->
+
+            <article class="card mb-4">
+              <header class="card-header">
+                <div class="card-meta">
+                  <a href="#"
+                    ><time
+                      class="timeago"
+                      datetime="2021-05-08 20:00"
+                      timeago-id="6"
+                      >2 amos atrás</time
+                    ></a
+                  >
+                  em <a href="page-category.html">Viagem</a>
+                </div>
+                <a href="post-image.html">
+                  <h4 class="card-title">Como não cantar sobre o amor?</h4>
+                </a>
+              </header>
+              <a href="post-image.html">
+                <img class="card-img" src="/public/img/articles/1.jpg" alt="" />
+              </a>
+              <div class="card-body">
+                <p class="card-text">
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint
+                  soluta distinctio voluptas. Obcaecati ipsum modi deleniti ex,
+                  repellendus id, quia quam accusantium nisi omnis nihil ratione
+                  facilis dolorum autem fugiat!
+                </p>
+              </div>
+            </article>
+            <!-- /.card -->
+          </div>
+        </div>
+      </div>
+    </main>
+    <div class="site-newsletter">
+      <div class="container">
+        <div class="text-center">
+          <h3 class="h4 mb-2">Cadastra-se em nossa página</h3>
+          <p class="text-muted">
+            Faça sua contribuição a associção e acompanhe nossas ações no nosso
+            portal e pelo instagram.
+          </p>
+
+          <div class="row">
+            <div class="col-xs-12 col-sm-9 col-md-7 col-lg-5 ms-auto me-auto">
+              <div class="input-group mb-3 mt-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Email address"
+                  aria-label="Email address"
+                />
+                <span class="input-group-btn">
+                  <button class="btn btn-secondary" type="button">
+                    Subscribe
+                  </button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="site-instagram">
+      <div class="action">
+        <a
+          class="btn btn-light"
+          href="https://www.instagram.com/ampappcg/"
+          target="_blank"
+        >
+          Siga-nos @ Instagram
+        </a>
+      </div>
+      <div class="row g-0">
+        <div class="col-sm-6">
+          <div class="row g-0">
+            <div class="col-3">
+              <a class="photo" href="#">
+                <img
+                  class="img-fluid"
+                  src="/public/img/instagram/1.jpg"
+                  alt=""
+                />
+              </a>
+            </div>
+            <div class="col-3">
+              <a class="photo" href="#">
+                <img
+                  class="img-fluid"
+                  src="/public/img/instagram/2.jpg"
+                  alt=""
+                />
+              </a>
+            </div>
+            <div class="col-3">
+              <a class="photo" href="#">
+                <img
+                  class="img-fluid"
+                  src="/public/img/instagram/3.jpg"
+                  alt=""
+                />
+              </a>
+            </div>
+            <div class="col-3">
+              <a class="photo" href="#">
+                <img
+                  class="img-fluid"
+                  src="/public/img/instagram/4.jpg"
+                  alt=""
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="row g-0">
+            <div class="col-3">
+              <a class="photo" href="#">
+                <img
+                  class="img-fluid"
+                  src="/public/img/instagram/5.jpg"
+                  alt=""
+                />
+              </a>
+            </div>
+            <div class="col-3">
+              <a class="photo" href="#">
+                <img
+                  class="img-fluid"
+                  src="/public/img/instagram/6.jpg"
+                  alt=""
+                />
+              </a>
+            </div>
+            <div class="col-3">
+              <a class="photo" href="#">
+                <img
+                  class="img-fluid"
+                  src="/public/img/instagram/7.jpg"
+                  alt=""
+                />
+              </a>
+            </div>
+            <div class="col-3">
+              <a class="photo" href="#">
+                <img
+                  class="img-fluid"
+                  src="/public/img/instagram/8.jpg"
+                  alt=""
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="site-footer bg-dark">
+      <div class="container">
+        <ul class="nav justify-content-center">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Política de privacidade</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Termos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">Contato</a>
+          </li>
+        </ul>
+        <div class="copy">
+          © Art&Games 2023<br />
+          All rights reserved
+        </div>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+      integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://kit.fontawesome.com/b6008d9d9d.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- <script src="/src/welcome.js"></script> -->
+  </body>
 </html>

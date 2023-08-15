@@ -2,6 +2,9 @@
 let btnAcessar = document.getElementById('btn-acessar');
 let btnCadastrar = document.getElementById('btn-cadastrar');
 let container = document.getElementById('container');
+document.addEventListener("DOMContentLoaded", () => {
+    container.classList.add('painel-direito-ativo');
+});
 btnAcessar.addEventListener('click', () => {
     container.classList.remove('painel-direito-ativo');
 });
@@ -11,47 +14,90 @@ btnCadastrar.addEventListener('click', () => {
 });
 // CADASTRO DE UM USUARIO
 let formularioCadastro = document.querySelector('#formulario-cadastro');
-let inputCadastroNome = document.querySelector('#input-cadastro-nome');
-let inputCadastroEmail = document.querySelector('#input-cadastro-email');
-let inputCadastroSenha = document.querySelector('#input-cadastro-senha');
+let inputCadastroNomeC = document.querySelector('#input-cadastro-nome');
+let inputCadastroEmailC = document.querySelector('#input-cadastro-email');
+let inputCpfC = document.querySelector('#input-cadastro-cpf');
+let inputCadastroSenhaC = document.querySelector('#input-cadastro-senha');
+let inputLoginC = document.querySelector("#login");
+let inputSenhaconfirmaC = document.querySelector("#senha-confirm");
+let inputIdadeC = document.querySelector("#idade");
+let inputRuaC = document.querySelector("#rua");
+let inputNumRuaC = document.querySelector("#numRua");
+let inputBairroC = document.querySelector("#bairro");
+let inputCidadeC = document.querySelector("#cidade");
+let inputFoneC = document.querySelector("#fone");
+let inputCnhC = document.querySelector("#cnh");
+let inputCatCnhC = document.querySelector("#categCnh");
+let inputDataCnhC = document.querySelector("#dataCnh");
+let inputValidCnhC = document.querySelector("#validadecnh");
+let inputModCarroC = document.querySelector("#modlCarro");
+let inputCorCarroC = document.querySelector("#corCarro");
+let inputAnoCarroC = document.querySelector("#anoCarro");
+let inputPlacaC = document.querySelector("#placa");
 formularioCadastro.addEventListener('submit', (evento) => {
     evento.preventDefault();
     verificaCampos();
 });
 function verificaCampos() {
-    if (inputCadastroNome.value === '' || inputCadastroNome.value.length < 3) {
-        inputCadastroNome.focus();
-        inputCadastroNome.setAttribute('style', 'outline-color: red');
+    if (inputCadastroNomeC.value === '' || inputCadastroNomeC.value.length < 3) {
+        inputCadastroNomeC.focus();
+        inputCadastroNomeC.setAttribute('style', 'outline-color: red');
         return;
     }
-    if (inputCadastroEmail.value === '' || inputCadastroEmail.value.length < 10) {
-        inputCadastroEmail.focus();
-        inputCadastroEmail.setAttribute('style', 'outline-color: red');
+    if (inputCadastroEmailC.value === '' || inputCadastroEmailC.value.length < 10) {
+        inputCadastroEmailC.focus();
+        inputCadastroEmailC.setAttribute('style', 'outline-color: red');
         return;
     }
-    if (inputCadastroSenha.value === '' || inputCadastroSenha.value.length < 8) {
-        inputCadastroSenha.focus();
-        inputCadastroSenha.setAttribute('style', 'outline-color: red');
+    if (inputCadastroSenhaC.value === '' || inputCadastroSenhaC.value.length < 8) {
+        inputCadastroSenhaC.focus();
+        inputCadastroSenhaC.setAttribute('style', 'outline-color: red');
         return;
     }
-    inputCadastroNome.removeAttribute('style');
-    inputCadastroEmail.removeAttribute('style');
-    inputCadastroSenha.removeAttribute('style');
+    inputCadastroNomeC.removeAttribute('style');
+    inputCadastroEmailC.removeAttribute('style');
+    inputCadastroSenhaC.removeAttribute('style');
     let novoUsuario = {
-        nome: inputCadastroNome.value,
-        login: inputCadastroEmail.value,
-        senha: inputCadastroSenha.value,
-        recados: [],
+        nome: inputCadastroNomeC.value,
+        login: inputCadastroEmailC.value,
+        senha: inputCadastroSenhaC.value,
+        cpf: inputCpfC.value,
+        id: "",
+        idade: inputIdadeC.value,
+        rua: inputRuaC.value,
+        numRua: inputNumRuaC.value,
+        bairro: inputBairroC.value,
+        cidade: inputCidadeC.value,
+        fone: inputFoneC.value,
+        cnh: inputCnhC.value,
+        categCnh: inputCatCnhC.value,
+        dataCnh: inputDataCnhC.value,
+        validadecnh: inputValidCnhC.value,
+        modlCarro: inputModCarroC.value,
+        corCarro: inputCorCarroC.value,
+        anoCarro: inputAnoCarroC.value,
+        placa: inputPlacaC.value,
     };
     cadastrarUsuario(novoUsuario);
 }
+let indiceDrv = "";
 function cadastrarUsuario(novoUsuario) {
     let listaUsuarios = buscarUsuariosNoStorage();
+    for (let indice in listaUsuarios) {
+        indiceDrv = indice;
+    }
+    let indicDrvNumb = +indiceDrv;
+    let listaDriver = listaUsuarios[indicDrvNumb];
+    // for (let indice in listaDriver){
+    //     if(listaDriver[indice].login == novoUsuario.login){
+    //         alert("Essa conta já existe!")
+    //     }
+    // }
     let existe = listaUsuarios.some((usuario) => {
-        return usuario.login === novoUsuario.login;
+        return usuario.login === novoUsuario.login || usuario.cpf === novoUsuario.cpf;
     });
     if (existe) {
-        let confirma = confirm("Este e-mail já está cadastrado. Deseja ir para a página de login?");
+        let confirma = confirm("Usuário já está cadastrado. Deseja ir para a página de login?");
         if (confirma) {
             container.classList.add('painel-direito-ativo');
             formularioCadastro.reset();
@@ -89,7 +135,7 @@ function validarCamposLogin() {
         return;
     }
     inputLoginEmail.removeAttribute('style');
-    inputCadastroSenha.removeAttribute('style');
+    inputCadastroSenhaC.removeAttribute('style');
     let usuarioLogando = {
         login: inputLoginEmail.value,
         senha: inputLoginSenha.value
@@ -101,16 +147,37 @@ function logarNoSistema(usuarioLogando) {
     let existe = listaUsuarios.some((usuario) => {
         return usuario.login === usuarioLogando.login && usuario.senha === usuarioLogando.senha;
     });
-    if (!existe) {
-        let confirma = confirm("E-mail ou senha não existe, deseja criar conta?");
-        if (confirma) {
-            setTimeout(() => {
-                container.classList.add('painel-direito-ativo');
-                formularioCadastro.reset();
-            }, 1000);
+    let usuarioEmail = "";
+    let usuarioNome = "";
+    console.log(usuarioEmail);
+    for (const indice in listaUsuarios) {
+        if (listaUsuarios[indice].login == usuarioLogando.login) {
+            usuarioNome = listaUsuarios[indice].nome;
+            usuarioEmail = listaUsuarios[indice].login;
         }
-        return;
     }
-    sessionStorage.setItem('usuarioLogado', inputLoginEmail.value);
-    window.location.href = '../home.html';
+    if (!existe) {
+        if (inputLoginEmail.value == "adm123@gmail.com" && inputLoginSenha.value == "senhaAdm123") {
+            sessionStorage.setItem('usuarioLogado', inputLoginEmail.value);
+            window.location.href = "../home.html";
+        }
+        else {
+            let confirma = confirm("E-mail ou senha não existe, deseja criar conta?");
+            if (confirma) {
+                setTimeout(() => {
+                    container.classList.add('painel-direito-ativo');
+                    formularioCadastro.reset();
+                }, 1000);
+            }
+            return;
+        }
+    }
+    // if (existe && inputLoginEmail.value !== "teste123@gmail.com" && inputLoginSenha.value !== "teste123"){
+    //      sessionStorage.setItem('usuarioLogado', inputLoginEmail.value);
+    //     window.location.href = "../usuario.html";
+    // }
+    else {
+        sessionStorage.setItem('usuarioLogado', inputLoginEmail.value);
+        window.location.href = '../usuario.html';
+    }
 }

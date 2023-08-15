@@ -3,9 +3,15 @@ let usuario: Element | null = document.querySelector(
   "#userHome"
 ) as HTMLFormElement;
 
-let dadosStorage: Usuario[] = JSON.parse(localStorage.getItem("dados-usuario") || "[]");
+let dadosStorage: Driver[] = JSON.parse(localStorage.getItem("dados-usuario") || "[]");
 
-let usuarioNome: string = ""
+let usuarioNome: string = "";
+let usuarioEmail: string = "";
+
+// if(usuarioEmail != 'teste123@gmail.com'){
+//   alert("Pagina restrita!");
+//   window.location.href = "../usuario.html";
+// }
 
 if (!login) {
   alert("Você deve logar antes!");
@@ -15,11 +21,12 @@ if (!login) {
 for (const indice in dadosStorage) {
   if (dadosStorage[indice].login == login) {
     usuarioNome = dadosStorage[indice].nome;
+    usuarioEmail = dadosStorage[indice].login;
   }
 }
 
 
-usuario.innerHTML = `Bem vindo: <strong id="userHome2">${usuarioNome}</strong>`;
+usuario.innerHTML = `Bem vindo: <strong id="userHome2">${login}</strong>`;
 let listaUsuarios = JSON.parse(
   window.localStorage.getItem("dados-usuario") || "[]"
 );
@@ -31,12 +38,50 @@ for (const indice in listaUsuarios) {
   }
 }
 
-let listaRecados = listaUsuarios[indiceUsuario].recados;
-let formulario = document.querySelector("#recados") as HTMLFormElement;
-let inputTitulo = document.querySelector("#descricao") as HTMLInputElement;
-let inputDescricao = document.querySelector(
-  "#detalhamento"
+let listaDriver = listaUsuarios[indiceUsuario];
+let formulario = document.querySelector("#formCadastr") as HTMLFormElement;
+let BotnSalvarMdl = document.querySelector('#CadastrarRecados') as HTMLButtonElement;
+let inputNome = document.querySelector("#nome") as HTMLInputElement;
+inputNome.setAttribute('required', 'required');
+let inputLogin = document.querySelector("#login") as HTMLInputElement;
+inputLogin.setAttribute('required', 'required');
+let inputCpf = document.querySelector('#input-cadastro-cpf') as HTMLInputElement;
+inputCpf.setAttribute('required', 'required');
+let inputSenha = document.querySelector("#senha") as HTMLInputElement;
+inputSenha.setAttribute('required', 'required');
+let inputSenhaconfirma = document.querySelector("#senha-confirm") as HTMLInputElement;
+inputSenhaconfirma.setAttribute('required', 'required');
+let inputIdade = document.querySelector(
+  "#idade"
 ) as HTMLInputElement;
+inputIdade.setAttribute('required', 'required');
+let inputRua = document.querySelector("#rua") as HTMLInputElement;
+inputRua.setAttribute('required', 'required');
+let inputNumRua = document.querySelector("#numRua") as HTMLInputElement;
+inputNumRua.setAttribute('required', 'required');
+let inputBairro = document.querySelector("#bairro") as HTMLInputElement;
+inputBairro.setAttribute('required', 'required');
+let inputCidade = document.querySelector("#cidade") as HTMLInputElement;
+inputCidade.setAttribute('required', 'required');
+let inputFone = document.querySelector("#fone") as HTMLInputElement;
+inputFone.setAttribute('required', 'required');
+let inputCnh = document.querySelector("#cnh") as HTMLInputElement;
+inputCnh.setAttribute('required', 'required');
+let inputCatCnh = document.querySelector("#categCnh") as HTMLInputElement;
+inputCatCnh.setAttribute('required', 'required');
+let inputDataCnh = document.querySelector("#dataCnh") as HTMLInputElement;
+inputDataCnh.setAttribute('required', 'required');
+let inputValidCnh = document.querySelector("#validadecnh") as HTMLInputElement;
+inputValidCnh.setAttribute('required', 'required');
+let inputModCarro = document.querySelector("#modlCarro") as HTMLInputElement;
+inputModCarro.setAttribute('required', 'required');
+let inputCorCarro = document.querySelector("#corCarro") as HTMLInputElement;
+inputCorCarro.setAttribute('required', 'required');
+let inputAnoCarro = document.querySelector("#anoCarro") as HTMLInputElement;
+inputAnoCarro.setAttribute('required', 'required');
+let inputPlaca = document.querySelector("#placa") as HTMLInputElement;
+inputPlaca.setAttribute('required', 'required');
+
 let botaoSalvar = document.querySelector("#enviar_info") as HTMLButtonElement;
 let botaoAtualizar = document.querySelector(
   "#botao_atualizar"
@@ -50,21 +95,40 @@ let tabelaDados = document.querySelector("#tabela-registros") as HTMLDivElement;
 let ModApaga = document.querySelector("#modalApagarRecado") as HTMLDivElement;
 let msgModal = document.querySelector("#msg") as HTMLParagraphElement;
 
+let ModCadastr = document.querySelector("#modalCadastrar") as HTMLDivElement;
+
+let BtnModalCadast = document.querySelector("#modalCadast") as HTMLButtonElement;
 let cardDados = document.querySelector("#row-card") as HTMLDivElement;
 
 let ModalApaga = new bootstrap.Modal(ModApaga);
 
-interface Recados {
-  indice: string;
-  descricao: string;
-  detalhamento: string;
-}
-interface Usuario {
-  nome: string;
-  login: string;
-  senha: string;
-  recados: Recados[];
-}
+let ModalCadastr = new bootstrap.Modal(ModCadastr);
+
+// interface Driver {
+//   indice: string;
+//   nome: string;
+//   idade: string;
+//   rua: string;
+//   numRua: string;
+//   bairro: string;
+//   cidade: string;
+//   fone: string;
+//   cnh: string;
+//   categCnh: string;
+//   dataCnh: string;
+//   validadecnh: string;
+//   modlCarro: string;
+//   corCarro: string;
+//   anoCarro: string;
+  
+
+// }
+// interface Usuario {
+//   nome: string;
+//   login: string;
+//   senha: string;
+//   Driver: Driver;
+// }
 /////////////////////*************EVENTOS****************///////////////////////////
 
 formulario.addEventListener("submit", (e) => {
@@ -79,26 +143,77 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "../index.html";
     return;
   }
-  // salvarNaTabela(listaRecados);
+  // salvarNaTabela(listaDriver);
 
-  salvarNoCard(listaRecados);
+  salvarNoCard(listaUsuarios);
 });
 
-botaoSair.addEventListener("click", logOut);
+botaoSair.addEventListener("click", logOutAdm);
+
+BtnModalCadast.addEventListener("click", modalCadastra);
 
 //////////////////////*******FUNÇÕES**********////////////////////////////////////////////////
 
 function adicionarNovoRegistro(): void {
-  let titulorecados = inputTitulo.value;
-  let descricaorecados = inputDescricao.value;
+// let inputNome1 = document.querySelector("#nome") as HTMLInputElement;
+// let inputIdade1 = document.querySelector(
+//   "#idade"
+// ) as HTMLInputElement;
+// let inputRua1 = document.querySelector("#rua") as HTMLInputElement;
+// let inputNumRua1 = document.querySelector("#numRua") as HTMLInputElement;
+// let inputBairro1 = document.querySelector("#bairro") as HTMLInputElement;
+// let inputCidade1 = document.querySelector("#cidade") as HTMLInputElement;
+// let inputFone1 = document.querySelector("#fone") as HTMLInputElement;
+// let inputCnh1 = document.querySelector("#cnh") as HTMLInputElement;
+// let inputCatCnh1 = document.querySelector("#categCnh") as HTMLInputElement;
+// let inputDataCnh1 = document.querySelector("#dataCnh") as HTMLInputElement;
+// let inputValidCnh1 = document.querySelector("#validadecnh") as HTMLInputElement;
+// let inputModCarro1 = document.querySelector("#modlCarro") as HTMLInputElement;
+// let inputCorCarro1 = document.querySelector("#corCarro") as HTMLInputElement;
+// let inputAnoCarro1 = document.querySelector("#anoCarro") as HTMLInputElement;
 
-  let recados: Recados = {
-    indice: "",
-    descricao: titulorecados,
-    detalhamento: descricaorecados,
+  let nomeCadastro = inputNome.value;
+  let loginCadastro = inputLogin.value;
+  let senhaCadastro = inputSenha.value;
+  let idadeCadastro = inputIdade.value;
+  let ruaCadastro = inputRua.value;
+  let numeroruaCadastro = inputNumRua.value;
+  let bairroCadastro = inputBairro.value;
+  let cidadeCadastro = inputCidade.value;
+  let foneCadastro = inputFone.value;
+  let cnhCadastro = inputCnh.value;
+  let catcnhCadastro = inputCatCnh.value;
+  let dataCnhCadastro = inputDataCnh.value;
+  let validCnhCadastro = inputValidCnh.value;
+  let modlCarroCadastro = inputModCarro.value;
+  let corCarroCadastro = inputCorCarro.value;
+  let anoCarroCadastro = inputAnoCarro.value;
+  let placaCadastro = inputPlaca.value;
+  let cpf = inputCpf.value;
+
+  let Driver: Driver = {
+    id: "",
+    nome: nomeCadastro,
+    idade: idadeCadastro,
+    cpf: cpf,
+    login:  loginCadastro, 
+    senha: senhaCadastro, 
+    placa: placaCadastro,
+    rua: ruaCadastro,
+    numRua: numeroruaCadastro,
+    bairro: bairroCadastro,
+    cidade: cidadeCadastro,
+    fone: foneCadastro,
+    cnh: cnhCadastro,
+    categCnh: catcnhCadastro,
+    dataCnh: dataCnhCadastro,
+    validadecnh: validCnhCadastro,
+    modlCarro: modlCarroCadastro,
+    corCarro: corCarroCadastro,
+    anoCarro: anoCarroCadastro,
   };
 
-  listaRecados.push(recados);
+  listaUsuarios.push(Driver);
 
   window.location.reload();
 
@@ -110,17 +225,17 @@ function adicionarNovoRegistro(): void {
 
 //---------FUNÇÃO PARA CRIAÇÃO DE TABELA--------------------
 
-function salvarNaTabela(dadosrecados: Recados[]) {
-  if (dadosrecados.length > 0) {
+function salvarNaTabela(dadosdriver: Driver[]) {
+  if (dadosdriver.length > 0) {
 
-    for (const indice in dadosrecados) {
+    for (const indice in dadosdriver) {
 
-      let indcString = dadosrecados[indice].indice;
+      let indcString = dadosdriver[indice].id;
       let indcNumber = +indcString;
       indcNumber= Number(indice);
       indcNumber++;
       indcString = indcNumber.toString();
-      dadosrecados[indice].indice = indcString;
+      dadosdriver[indice].id = indcString;
 
       window.localStorage.setItem(
         "dados-usuario",
@@ -130,22 +245,58 @@ function salvarNaTabela(dadosrecados: Recados[]) {
 
       let novaLinha = document.createElement("tr");
       let colunaRegistro = document.createElement("td");
-      let colunaTitulo = document.createElement("td");
-      let colunaDescricao = document.createElement("td");
+      let colunaNome = document.createElement("td");
+      let colunaIdade = document.createElement("td");
+      let colunarua = document.createElement("td");
+      let colunaNumRua = document.createElement("td");
+      let colunaBairro = document.createElement("td");
+      let colunaCidade = document.createElement("td");
+       let colunaFone = document.createElement("td");
+      let colunaCnh = document.createElement("td");
+      let colunacategCnh = document.createElement("td");
+      let colunadataCnh = document.createElement("td");
+      let colunavalidadecnh = document.createElement("td");
+      let colunamodlCarro = document.createElement("td");
+      let colunacorCarro = document.createElement("td");
+      let colunaanoCarro = document.createElement("td");
       let colunaAcoes = document.createElement("td");
 
       novaLinha.appendChild(colunaRegistro);
-      novaLinha.appendChild(colunaTitulo);
-      novaLinha.appendChild(colunaDescricao);
+      novaLinha.appendChild(colunaNome);
+      novaLinha.appendChild(colunaIdade);
+      novaLinha.appendChild(colunarua);
+      novaLinha.appendChild(colunaNumRua);
+      novaLinha.appendChild(colunaBairro);
+      novaLinha.appendChild(colunaCidade);
+      novaLinha.appendChild(colunaFone);
+      novaLinha.appendChild(colunaCnh);
+      novaLinha.appendChild(colunacategCnh);
+      novaLinha.appendChild(colunadataCnh);
+      novaLinha.appendChild(colunavalidadecnh);
+      novaLinha.appendChild(colunamodlCarro);
+      novaLinha.appendChild(colunacorCarro);
+      novaLinha.appendChild(colunaanoCarro);
       novaLinha.appendChild(colunaAcoes);
 
       tabelaDados.appendChild(novaLinha);
 
       novaLinha.setAttribute("class", "informacoes");
-      novaLinha.setAttribute("id", dadosrecados[indice].indice);
-      colunaRegistro.innerHTML = dadosrecados[indice].indice;
-      colunaTitulo.innerHTML = dadosrecados[indice].descricao;
-      colunaDescricao.innerHTML = dadosrecados[indice].detalhamento;
+      novaLinha.setAttribute("id", dadosdriver[indice].id);
+      colunaRegistro.innerHTML = dadosdriver[indice].id;
+      colunaNome.innerHTML = dadosdriver[indice].nome;
+      colunaIdade.innerHTML = dadosdriver[indice].idade;
+      colunarua.innerHTML = dadosdriver[indice].rua;
+      colunaNumRua.innerHTML = dadosdriver[indice].numRua;
+      colunaBairro.innerHTML = dadosdriver[indice].bairro;
+      colunaCidade.innerHTML = dadosdriver[indice].cidade;
+      colunaFone.innerHTML = dadosdriver[indice].fone;
+      colunaCnh.innerHTML = dadosdriver[indice].cnh;
+      colunacategCnh.innerHTML = dadosdriver[indice].categCnh;
+      colunadataCnh.innerHTML = dadosdriver[indice].dataCnh;
+       colunavalidadecnh.innerHTML = dadosdriver[indice].validadecnh;
+        colunamodlCarro.innerHTML = dadosdriver[indice].modlCarro;
+         colunacorCarro.innerHTML = dadosdriver[indice].corCarro;
+         colunaanoCarro.innerHTML = dadosdriver[indice].anoCarro;
       colunaAcoes.innerHTML = `
             <td><button type="button" value="" class="inf_botao" onclick="prepararEdicao(${indice})" id="inf_botao_editar">Editar</button></td>
             <td><button type="button" value="" class="inf_botao" onclick="apagando(${indice})" id="inf_botao_apagar">Apagar</button></td>
@@ -156,15 +307,15 @@ function salvarNaTabela(dadosrecados: Recados[]) {
 
 //-----------FUNÇÃO PARA CRIAR CARD---------------
 
-function salvarNoCard(dadosrecados: Recados[]) {
-  if (dadosrecados.length > 0) {
-    for (const indice in dadosrecados) {
-      let indcString = dadosrecados[indice].indice;
+function salvarNoCard(dadosdriver: Driver[]) {
+  if (dadosdriver.length > 0) {
+    for (const indice in dadosdriver) {
+      let indcString = dadosdriver[indice].id;
       let indcNumber = +indcString;
       indcNumber = Number(indice);
       indcNumber++;
       indcString = indcNumber.toString();
-      dadosrecados[indice].indice = indcString;
+      dadosdriver[indice].id = indcString;
       window.localStorage.setItem(
         "dados-usuario",
         JSON.stringify(listaUsuarios)
@@ -172,51 +323,202 @@ function salvarNoCard(dadosrecados: Recados[]) {
 
       
       let sectionCard = document.createElement("section");
-      let divCardTtl = document.createElement("div");
+      // let divCardTtl = document.createElement("div");
       let divCardTRst = document.createElement("div");
-      let divCardDsc = document.createElement("div");
+      let divCardNome = document.createElement("div");
+      let divCardIdade = document.createElement("div");
+      let divCardCpf = document.createElement("div");
+      let divCardRua = document.createElement("div");
+      let divCardnumRua = document.createElement("div");
+      let divCardBairro = document.createElement("div");
+      let divCardCidade = document.createElement("div");
+      let divCardFone = document.createElement("div");
+      let divCardCnh = document.createElement("div");
+      let divCardcategCnh = document.createElement("div");
+      let divCardDataCnh = document.createElement("div");
+      let divCardValidadeCnh = document.createElement("div");
+      let divCardModlCarro = document.createElement("div");
+      let divCardCorCarro = document.createElement("div");
+      let divCardAnoCarro = document.createElement("div");
+      let divCardPlacaCarro = document.createElement("div");
       let divCardAcao = document.createElement("div");
       let labelRegistro = document.createElement("label");
       let registro = document.createElement("p");
-      let labelTitulo = document.createElement("label");
-      let titulo = document.createElement("p");
-      let labelDescricao = document.createElement("label");
-      let descricao = document.createElement("p");
+      let labelNome = document.createElement("label");
+      let nome = document.createElement("p");
+      let labelIdade = document.createElement("label");
+      let idade = document.createElement("p");
+      let labelCpf = document.createElement("label");
+      let cpf = document.createElement("p");
+      let labelRua = document.createElement("label");
+      let rua = document.createElement("p");
+      let labelNumRua = document.createElement("label");
+      let numRua = document.createElement("p");
+      let labelBairro = document.createElement("label");
+      let bairro = document.createElement("p");
+      let labelCidade = document.createElement("label");
+      let cidade = document.createElement("p");
+      let labelFone = document.createElement("label");
+      let fone = document.createElement("p");
+      let labelCnh = document.createElement("label");
+      let cnh = document.createElement("p");
+      let labelcategCnh = document.createElement("label");
+      let categCnh = document.createElement("p");
+      let labelDataCnh = document.createElement("label");
+      let dataCnh = document.createElement("p");
+      let labelvalidadecnh = document.createElement("label");
+      let validadecnh = document.createElement("p");
+      let labelmodlCarro = document.createElement("label");
+      let modlCarro = document.createElement("p");
+      let labelcorCarro = document.createElement("label");
+      let corCarro = document.createElement("p");
+      let labelAnoCarro = document.createElement("label");
+      let anoCarro = document.createElement("p");
+      let labelPlacaCarro = document.createElement("label");
+      let placaCarro = document.createElement("p");
       let labelAcao = document.createElement("label");
       let acoes = document.createElement("td");
 
-      divCardTtl.setAttribute("class", "titulo-card");
+      // divCardTtl.setAttribute("class", "titulo-card");
       divCardTRst.setAttribute("class", "registro");
-      divCardDsc.setAttribute("class", "descricao");
+      divCardNome.setAttribute("class", "nome");
+      divCardIdade.setAttribute("class", "idade");
+      divCardCpf.setAttribute("class", "cpf");
+      divCardRua.setAttribute("class", "rua");
+      divCardnumRua.setAttribute("class", "numrua");
+      divCardBairro.setAttribute("class", "bairro");
+      divCardCidade.setAttribute("class", "cidade");
+      divCardFone.setAttribute("class", "fone");
+      divCardCnh.setAttribute("class", "cnh");
+      divCardcategCnh.setAttribute("class", "categCnh");
+      divCardDataCnh.setAttribute("class", "datacnh");
+      divCardValidadeCnh.setAttribute("class", "validadecnh");
+      divCardModlCarro.setAttribute("class", "modlcarro");
+      divCardCorCarro.setAttribute("class", "corcarro");
+      divCardAnoCarro.setAttribute("class", "anocarro");
+      divCardPlacaCarro.setAttribute("class", "placacarro");
       divCardAcao.setAttribute("class", "acoes");
 
       divCardTRst.appendChild(labelRegistro);
       divCardTRst.appendChild(registro);
 
-      divCardTtl.appendChild(labelTitulo);
-      divCardTtl.appendChild(titulo);
+      divCardNome.appendChild(labelNome);
+      divCardNome.appendChild(nome);
 
-      divCardDsc.appendChild(labelDescricao);
-      divCardDsc.appendChild(descricao);
+      divCardIdade.appendChild(labelIdade);
+      divCardIdade.appendChild(idade);
+
+      divCardCpf.appendChild(labelCpf);
+      divCardCpf.appendChild(cpf);
+
+      divCardRua.appendChild(labelRua);
+      divCardRua.appendChild(rua);
+
+      divCardnumRua.appendChild(labelNumRua);
+      divCardnumRua.appendChild(numRua);
+
+      divCardBairro.appendChild(labelBairro);
+      divCardBairro.appendChild(bairro);
+
+      divCardCidade.appendChild(labelCidade);
+      divCardCidade.appendChild(cidade);
+
+      divCardFone.appendChild(labelFone);
+      divCardFone.appendChild(fone);
+
+      divCardCnh.appendChild(labelCnh);
+      divCardCnh.appendChild(cnh);
+
+      divCardcategCnh.appendChild(labelcategCnh);
+      divCardcategCnh.appendChild(categCnh);
+
+      divCardDataCnh.appendChild(labelDataCnh);
+      divCardDataCnh.appendChild(dataCnh);
+
+      divCardValidadeCnh.appendChild(labelvalidadecnh);
+      divCardValidadeCnh.appendChild(validadecnh);
+
+      divCardModlCarro.appendChild(labelmodlCarro);
+      divCardModlCarro.appendChild(modlCarro);
+
+      divCardCorCarro.appendChild(labelcorCarro);
+      divCardCorCarro.appendChild(corCarro);
+
+      divCardAnoCarro.appendChild(labelAnoCarro);
+      divCardAnoCarro.appendChild(anoCarro);
+
+      divCardPlacaCarro.appendChild(labelPlacaCarro);
+      divCardPlacaCarro.appendChild(placaCarro);
 
       divCardAcao.appendChild(labelAcao);
       divCardAcao.appendChild(acoes);
 
       sectionCard.appendChild(divCardTRst);
-      sectionCard.appendChild(divCardTtl);
-      sectionCard.appendChild(divCardDsc);
+      // sectionCard.appendChild(divCardTtl);
+      sectionCard.appendChild(divCardNome);
+      sectionCard.appendChild(divCardIdade);
+      sectionCard.appendChild(divCardCpf);
+      sectionCard.appendChild(divCardRua);
+      sectionCard.appendChild(divCardnumRua);
+      sectionCard.appendChild(divCardBairro);
+      sectionCard.appendChild(divCardCidade);
+      sectionCard.appendChild(divCardFone);
+      sectionCard.appendChild(divCardCnh);
+      sectionCard.appendChild(divCardcategCnh);
+      sectionCard.appendChild(divCardDataCnh);
+      sectionCard.appendChild(divCardValidadeCnh);
+      sectionCard.appendChild(divCardModlCarro);
+      sectionCard.appendChild(divCardCorCarro);
+      sectionCard.appendChild(divCardAnoCarro);
+      sectionCard.appendChild(divCardPlacaCarro);
       sectionCard.appendChild(divCardAcao);
 
       cardDados.appendChild(sectionCard);
 
       sectionCard.setAttribute("class", "card");
-      labelRegistro.setAttribute("id", dadosrecados[indice].indice);
+
+      if(indcNumber%2==0){
+        sectionCard.setAttribute('style', 'background: linear-gradient(to right,rgba(144, 203, 44, 0.8),rgba(144, 203, 44, 0.6))');
+      }
+      if(indcNumber%2!=0){
+        sectionCard.setAttribute('style', 'background: linear-gradient(to right,rgba(44 203 190 / 80%),rgba(73, 44, 203, 0.6))');
+      }
+
+      labelRegistro.setAttribute("id", dadosdriver[indice].id);
       labelRegistro.innerHTML = `Id: `;
-      registro.innerHTML = dadosrecados[indice].indice;
-      labelTitulo.innerHTML = `Título: `;
-      titulo.innerHTML = dadosrecados[indice].descricao;
-      labelDescricao.innerHTML = `Descrição: `;
-      descricao.innerHTML = dadosrecados[indice].detalhamento;
+      registro.innerHTML = dadosdriver[indice].id;
+      labelNome.innerHTML = `Motorista: `;
+      nome.innerHTML = dadosdriver[indice].nome;
+      labelIdade.innerHTML = `Idade: `;
+      idade.innerHTML = dadosdriver[indice].idade;
+      labelCpf.innerHTML = `CPF : `;
+      cpf.innerHTML = dadosdriver[indice].cpf;
+      labelRua.innerHTML = `Rua: `;
+      rua.innerHTML = dadosdriver[indice].rua;
+      labelNumRua.innerHTML = `Nº Rua: `;
+      numRua.innerHTML = dadosdriver[indice].numRua;
+      labelBairro.innerHTML = `Bairro: `;
+      bairro.innerHTML = dadosdriver[indice].bairro;
+      labelCidade.innerHTML = `Cidade: `;
+      cidade.innerHTML = dadosdriver[indice].cidade;
+      labelFone.innerHTML = `Fone: `;
+      fone.innerHTML = dadosdriver[indice].fone;
+      labelCnh.innerHTML = `CNH: `;
+      cnh.innerHTML = dadosdriver[indice].cnh;
+      labelcategCnh.innerHTML = `Ctg CNH: `;
+      categCnh.innerHTML = dadosdriver[indice].categCnh;
+      labelDataCnh.innerHTML = `Emissão: `;
+      dataCnh.innerHTML = dadosdriver[indice].dataCnh;
+      labelvalidadecnh.innerHTML = `Vld CNH: `;
+      validadecnh.innerHTML = dadosdriver[indice].validadecnh;
+      labelmodlCarro.innerHTML = `Mdl Veículo: `;
+      modlCarro.innerHTML = dadosdriver[indice].modlCarro;
+      labelcorCarro.innerHTML = `Cor Veículo: `;
+      corCarro.innerHTML = dadosdriver[indice].corCarro;
+      labelAnoCarro.innerHTML = `Ano Veículo: `;
+      anoCarro.innerHTML = dadosdriver[indice].anoCarro;
+      labelPlacaCarro.innerHTML = `Placa :`;
+      placaCarro.innerHTML = dadosdriver[indice].placa;
       labelAcao.innerHTML = `Ações: `;
       acoes.innerHTML = `
              <td><button type="button" value="" class="inf_botao" onclick="prepararEdicao(${indice})" id="inf_botao_editar">Editar</button></td>
@@ -227,54 +529,61 @@ function salvarNoCard(dadosrecados: Recados[]) {
 }
 
 function limparCampos(): void {
-  inputTitulo.value = "";
-  inputDescricao.value = "";
-  inputTitulo.focus();
+  inputNome.value = "";
+  inputIdade.value = "";
+  inputNome.focus();
 }
 
-function salvarNoStorage(lst_recados: Usuario[]) {
-  localStorage.setItem("dados-usuario", JSON.stringify(lst_recados));
+function salvarNoStorage(lst_driver: Driver[]) {
+  localStorage.setItem("dados-usuario", JSON.stringify(lst_driver));
 }
 
-function logOut(): void {
-  window.sessionStorage.removeItem("login");
+function logOutAdm(): void {
+  window.sessionStorage.removeItem("usuarioLogado");
+  window.sessionStorage.removeItem("usuarioAdm");
   window.sessionStorage.removeItem("dados-usuario");
   window.location.href = "../index.html";
 }
 
-function pegarDadosStorage() {
+// function pegarDadosStorage() {
   
 
-  if (dadosStorage) {
-    for (let registro of dadosStorage) {
-      salvarNoCard(registro.recados);
-    }
-  }
+//   if (dadosStorage) {
+//     for (let registro of dadosStorage) {
+//       salvarNoCard(registro.Driver);
+//     }
+//   }
 
-  return;
+//   return;
+// }
+
+// ------------FUNÇÃO DE CADASTRAR COM MODAL------------
+
+function modalCadastra (): void{
+  ModalCadastr.show();
 }
 
 //-------------- FUNÇÃO DE APAGAR DESABILITADA-----------
 
-function apagando(indice: Recados[]): void {
+function apagando(indice: Driver[]): void {
   ModalApaga.show();
 
-  let ApagarRecados= document.querySelector(
-    "#ApagarRecados"
+  let Apagardriver= document.querySelector(
+    "#Apagardriver"
   ) as HTMLButtonElement;
 
   // let ApagarRecado = document.querySelector(
   //   "#ApagarRecado"
   // ) as HTMLButtonElement;
 
-  ApagarRecados.addEventListener("click", () => {
-    listaRecados.splice(indice, 1);
+  Apagardriver.addEventListener("click", () => {
+    listaDriver.splice(indice, 1);
     salvarNoStorage(listaUsuarios);
     window.location.reload();
   });
 
   // ApagarRecado.addEventListener("click", () => {
-  //   listaRecados.splice(indice, 1);
+  //   listaDriver.splice(indice, 1);
   //   salvarNoStorage(listaUsuarios);
   //   window.location.reload();
   // });
@@ -288,31 +597,117 @@ function cancelarEdicao() {
 }
 
 function prepararEdicao(registroID: string) {
-  botaoSalvar.setAttribute("style", "display: none");
+  BotnSalvarMdl.setAttribute("style", "display:none");
+  // botaoSalvar.setAttribute("style", "display: none");
   botaoAtualizar.setAttribute("style", "display: inline-block");
   botaoAtualizar.setAttribute("onclick", `atualizarRegistro(${registroID})`);
   botaoCancelar.setAttribute("style", "display: inline-block");
   botaoCancelar.setAttribute("onclick", `cancelarEdicao()`);
+  
 
-  inputTitulo.value = listaRecados[registroID].descricao;
-  inputDescricao.value = listaRecados[registroID].detalhamento;
+inputNome.value = listaUsuarios[registroID].nome;
+inputIdade.value = listaUsuarios[registroID].idade;
+inputCpf.value = listaUsuarios[registroID].cpf;
+inputLogin.value = listaUsuarios[registroID].login;
+inputSenha.value = listaUsuarios[registroID].senha;
+inputRua.value = listaUsuarios[registroID].rua;
+inputNumRua.value = listaUsuarios[registroID].numRua;
+inputBairro.value = listaUsuarios[registroID].bairro;
+inputCidade.value = listaUsuarios[registroID].cidade;
+inputFone.value = listaUsuarios[registroID].fone;
+inputCnh.value = listaUsuarios[registroID].cnh;
+inputCatCnh.value = listaUsuarios[registroID].categCnh;
+inputDataCnh.value = listaUsuarios[registroID].dataCnh;
+inputValidCnh.value = listaUsuarios[registroID].validadecnh;
+inputModCarro.value = listaUsuarios[registroID].modlCarro;
+inputCorCarro.value = listaUsuarios[registroID].corCarro;
+inputAnoCarro.value = listaUsuarios[registroID].anoCarro;
+inputPlaca.value = listaUsuarios[registroID].placa;
+
+ModalCadastr.show();
+
+  // inputNome.value = listaDriver[registroID].nome;
+  // inputIdade.value = listaDriver[registroID].detalhamento;
 }
 
 function atualizarRegistro(registroID: string) {
-  let novoTitulo = inputTitulo.value;
-  let novaDescricao = inputDescricao.value;
 
-  let recadoEditado = listaRecados[registroID];
+  let idCadastro = registroID;
+  let idNumber = +idCadastro;
+  idNumber++;
+  idCadastro = idNumber.toString();
+  
+  let nomeCadastro = inputNome.value;
+  let idadeCadastro = inputIdade.value;
+  let cpfCadastro = inputCpf.value;
+  let loginCadastro = inputLogin.value;
+  let senhaCadastro = inputSenha.value;
+  let ruaCadastro = inputRua.value;
+  let numeroruaCadastro = inputNumRua.value;
+  let bairroCadastro = inputBairro.value;
+  let cidadeCadastro = inputCidade.value;
+  let foneCadastro = inputFone.value;
+  let cnhCadastro = inputCnh.value;
+  let catcnhCadastro = inputCatCnh.value;
+  let dataCnhCadastro = inputDataCnh.value;
+  let validCnhCadastro = inputValidCnh.value;
+  let modlCarroCadastro = inputModCarro.value;
+  let corCarroCadastro = inputCorCarro.value;
+  let anoCarroCadastro = inputAnoCarro.value;
+  let placaCadstro = inputPlaca.value;
 
-  recadoEditado.detalhamento = novaDescricao;
-  recadoEditado.descricao = novoTitulo;
+  let DriverEditado: Driver = {
+    id: idCadastro,
+    nome: nomeCadastro,
+    idade: idadeCadastro,
+    cpf: cpfCadastro,
+    login:  loginCadastro, 
+    senha: senhaCadastro, 
+    placa: placaCadstro,
+    rua: ruaCadastro,
+    numRua: numeroruaCadastro,
+    bairro: bairroCadastro,
+    cidade: cidadeCadastro,
+    fone: foneCadastro,
+    cnh: cnhCadastro,
+    categCnh: catcnhCadastro,
+    dataCnh: dataCnhCadastro,
+    validadecnh: validCnhCadastro,
+    modlCarro: modlCarroCadastro,
+    corCarro: corCarroCadastro,
+    anoCarro: anoCarroCadastro,
+  };
 
-  listaRecados.splice(registroID, 1, recadoEditado);
+  
+
+  // let recadoEditado = listaUsuarios[registroID];
+
+  
+  // recadoEditado.nome = inputNome.value;
+  // recadoEditado.idade = idadeCadastro;
+  // recadoEditado.cpf = cpfCadastro;
+  // recadoEditado.login = loginCadastro;
+  // recadoEditado.senha = senhaCadastro;
+  // recadoEditado.rua = ruaCadastro;
+  // recadoEditado.numRua = numeroruaCadastro;
+  // recadoEditado.bairro = bairroCadastro;
+  // recadoEditado.cidade = cidadeCadastro;
+  // recadoEditado.fone = foneCadastro;
+  // recadoEditado.cnh = cnhCadastro;
+  // recadoEditado.categCnh = catcnhCadastro;
+  // recadoEditado.dataCnh = dataCnhCadastro;
+  // recadoEditado.validadecnh = validCnhCadastro;
+  // recadoEditado.modlCarro = modlCarroCadastro;
+  // recadoEditado.corCarro = corCarroCadastro;
+  // recadoEditado.anoCarro = anoCarroCadastro;
+  // recadoEditado.placa = placaCadstro;
+
+  listaUsuarios.splice(registroID, 1, DriverEditado);
   window.localStorage.setItem("dados-usuario", JSON.stringify(listaUsuarios));
   window.location.reload();
 }
 
-function apagarRegistro(indice: Recados[]): void {
+function apagarRegistro(indice: Driver[]): void {
   let indcString = indice;
   let indcNumber = +indcString;
   indcNumber = Number(indice);
@@ -321,15 +716,15 @@ function apagarRegistro(indice: Recados[]): void {
   msgModal.innerHTML = `Tem certeza que deseja remover o recado de registro ID ${indcNumber}?`;
   ModalApaga.show();
 
-  let ApagarRecados = document.querySelector(
+  let Apagardriver = document.querySelector(
     "#ApagarRecados"
   ) as HTMLButtonElement;
 
-    let confirma:boolean=true;
-  ApagarRecados.addEventListener("click", () => {
-    listaRecados.splice(indice, 1);
+    // let confirma:boolean=true;
+  Apagardriver.addEventListener("click", () => {
+    listaUsuarios.splice(indice, 1);
     
-    confirma = false;
+    // confirma = false;
     
     salvarNoStorage(listaUsuarios);
     window.location.reload();

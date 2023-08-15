@@ -185,10 +185,19 @@
   
   #sair {
     position: absolute;
-    right: 0.5vw;
+    right: 3vw;
     top: 2vh;
     
   }
+
+   #botaoSairUser, #sairUser {
+      position: absolute;
+      right: 3vw;
+      top: 2vh;
+  
+    }
+
+    
 
   #topo{
     background-color:#fff;
@@ -224,11 +233,27 @@
 
   #recados{
     position: fixed;
-    margin-left: 75vw;
+    display: flex;
+    height: 15vh;
+    margin-left: 80vw;
     z-index: 999;
-    margin-top: 8vh;
+    margin-top: 2vh;
    
     /* box-shadow: 7px 7px 80px 20px; */
+  }
+    /* #formCadastr{
+      margin: 10px;
+    } */
+
+    #inputCdtr{
+      margin-bottom: 15px;
+    }
+
+  /* margin-bottom: 5px */
+
+  #modalCadastrar{
+    height: 80vh;
+    width: 80vw;
   }
 
   .row-card {
@@ -257,41 +282,218 @@
       justify-content: start;
       align-items: center;
       align-content: center;
-      width: 90vw;
+      width: 80vw;
       margin-left: 0vh;
         margin-top: 30vh;
+  }
+
+  #modalCadast{
+  height: 10vh;
+    margin-left: 35px;
+    position: relative;
+    top: 10vh;
   }
 
   .card {
   border-radius: 20px;
   box-shadow: 7px 7px 13px 0px rgb(50 50 50 / 22%);
-  padding: 30px;
-  text-align: left;
-  margin: 20px;
+  padding: 5px;
+    width: auto;
+    text-align: center;
+    margin: 8px;
   transition: all 0.3s ease-out;
   display: flex;
-  justify-content: flex-end;
-  flex-direction: column;
-  position: relative;
-  align-items: stretch;
-  background-color: moccasin;
+    justify-content: space-between;
+    flex-direction: row;
+    position: relative;
+    align-items: stretch;
+    flex-flow: wrap;
+    flex-direction: row;
+  /* background: linear-gradient(to right,rgba(144, 203, 44, 0.8),rgba(144, 203, 44, 0.6)); */
 }
 
 .registro{
   margin: 0;
-  display: flex;
+    width: 5vw;
+    display: flex;
     justify-content: space-between;
     font-size: 20px;
-    margin-bottom: 12px
+    margin-bottom: 12px;
 }
 
-.titulo-card{
-  margin: 0;
+.modlcarro{
+  width: auto;
   display: flex;
-    justify-content: flex-end;
-    flex-direction: column;
-    font-size: 20px;
-    margin-bottom: 12px
+    justify-content: space-between;
+}
+
+p{
+  color: #a63232;
+}
+
+.nome{
+  margin: 0px;
+    width: 40vw;
+    padding: 0px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: initial;
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+.idade {
+  margin: 0px;
+    width: 11vw;
+    padding: 0px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: initial;
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+.rua {
+margin: 0px;
+  width: 30vw;
+  padding: 0px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: initial;
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.numrua {
+  margin: 0px;
+    width: 15vw;
+    padding: 0px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: initial;
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+.bairro {
+  margin: 0px;
+    width: 20vw;
+    padding: 0px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: initial;
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+.cidade {
+      margin: 0px;
+        width: 25vw;
+        padding: 0px;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: initial;
+        font-size: 16px;
+        margin-bottom: 12px;
+}
+
+.fone {
+  margin: 0px;
+  width: 20vw;
+  padding: 0px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: initial;
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.cnh {
+  margin: 0px;
+  width: 20vw;
+  padding: 0px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: initial;
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.categCnh {
+  margin: 0px;
+    width: 15vw;
+    padding: 0px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: initial;
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+.datacnh {
+  margin: 0px;
+  width: 20vw;
+  padding: 0px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: initial;
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.validadecnh {
+  margin: 0px;
+  width: 20vw;
+  padding: 0px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: initial;
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.modlcarro {
+  margin: 0px;
+  width: 20vw;
+  padding: 0px;
+  display: flex;
+  justify-content: stretch;
+  flex-direction: initial;
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.corcarro {
+  margin: 0px;
+  width: 20vw;
+  padding: 0px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: initial;
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.anocarro {
+  margin: 0px;
+  width: 20vw;
+  padding: 0px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: initial;
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.acoes {
+  margin: 0px;
+    width: 30vw;
+    padding: 0px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: initial;
+    font-size: 16px;
+    margin-bottom: 12px;
 }
 
 #txt{
@@ -308,12 +510,23 @@
     font-size: 20px;
     margin-bottom: 12px;
 }
+
+.col-user{
+  display: flex;
+  justify-content: flex-end;
+}
   
   #botaoSair {
     border-radius: 20px;
     cursor: pointer;
+    z-index: 999;
   }
 
+  #botaoSairUser {
+       border-radius: 20px;
+       cursor: pointer;
+       z-index: 999;
+  }
   
   #botaoSair::after {
     content: " ";
@@ -327,8 +540,42 @@
     transform-origin:unset;
     transition: transform .25s ease;
   }
+
+    #botaoSairUser::after {
+      content: " ";
+      width: 60%;
+      height: 2px;
+      background-color: #a63232;
+      position: absolute;
+      left: 0.5vw;
+      bottom: 0;
+      transform: scaleX(0);
+      transform-origin: unset;
+      transition: transform .25s ease;
+    }
   
   #botaoSair:hover::after {
     transform: scaleX(1);
   }
+
+     #botaoSairUser:hover::after {
+      transform: scaleX(1);
+    } 
   
+    a{
+      width: 5vw;
+      height: 10vh;
+    } 
+
+    .relfete-esquerda{
+      /* -moz-transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1); */
+        transform: scaleX(-1);
+    }
+    .form-user{
+
+      display: flex;
+      position: relative;
+      top: 30vh;
+    }
