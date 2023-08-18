@@ -27,8 +27,8 @@ for (const indice in listaUsuarios) {
     }
 }
 let listaDriver = listaUsuarios[indiceUsuario];
-let formulario = document.querySelector("#formCadastr");
-let BotnSalvarMdl = document.querySelector('#CadastrarRecados');
+let formulario = document.querySelector("#formCadastr"); //tag form do modal cadasdtrar
+let BotnSalvarMdl = document.querySelector('#CadastrarRecados'); //submit do form do modal cadastrqr
 let inputNome = document.querySelector("#nome");
 inputNome.setAttribute('required', 'required');
 let inputLogin = document.querySelector("#login");
@@ -68,9 +68,9 @@ inputAnoCarro.setAttribute('required', 'required');
 let inputPlaca = document.querySelector("#placa");
 inputPlaca.setAttribute('required', 'required');
 let botaoSalvar = document.querySelector("#enviar_info");
-let botaoAtualizar = document.querySelector("#botao_atualizar");
-let botaoCancelar = document.querySelector("#botao_cancelar");
-let botaoSair = document.querySelector("#botaoSair");
+let botaoAtualizar = document.querySelector("#botao_atualizar"); //botâo atualizar do modal cadastrar
+let botaoCancelar = document.querySelector("#botao_cancelar"); //botâo cancelar do modal cadastrar
+let botaoSair = document.querySelector("#botaoSair"); //botâo sair do modal cadastrar
 let tabelaDados = document.querySelector("#tabela-registros");
 let ModApaga = document.querySelector("#modalApagarRecado");
 let msgModal = document.querySelector("#msg");
