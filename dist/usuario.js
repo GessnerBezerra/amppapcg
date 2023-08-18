@@ -6,10 +6,42 @@ let userNome = "";
 let userEmail = "";
 let indiceUser = "";
 let dadosUser;
-let formUsuario = document.querySelector("#formCadastrUsuario");
+// let formUsuario = document.querySelector("#formCadastrUsuario") as HTMLFormElement;
 let DadosDriver = document.querySelector("#formUser");
 let botaoSairUser = document.querySelector("#botaoSairUser");
 let cardDadosUser = document.querySelector("#row-cardUser");
+let formularioUser = document.querySelector("#formCadastrUsuario"); //tag form do modal cadasdtrar
+let BotnSalvarMdlUser = document.querySelector('#CadastrarRecadosUser'); //submit do form do modal cadastrqr
+let inputCadastroNomeU = document.querySelector('#nomeU'); //OK
+let inputCadastroEmailU = document.querySelector('#input-cadastro-emailU');
+let inputCpfU = document.querySelector('#cpfU'); //ok
+let inputCadastroSenhaU = document.querySelector('#input-cadastro-senhaU');
+// let inputLoginU = document.querySelector("#login") as HTMLInputElement;
+let inputSenhaconfirmaU = document.querySelector("#senha-confirmU");
+let inputIdadeU = document.querySelector("#idadeU"); //ok
+let inputRuaU = document.querySelector("#ruaU");
+let inputNumRuaU = document.querySelector("#numRuaU");
+let inputBairroU = document.querySelector("#bairroU");
+let inputCidadeU = document.querySelector("#cidadeU");
+let inputFoneU = document.querySelector("#foneU");
+let inputCnhU = document.querySelector("#cnhU");
+let inputCatCnhU = document.querySelector("#categCnhU");
+let inputDataCnhU = document.querySelector("#dataCnhU");
+let inputValidCnhU = document.querySelector("#validadecnhU");
+let inputModCarroU = document.querySelector("#modlCarroU");
+let inputCorCarroU = document.querySelector("#corCarroU");
+let inputAnoCarroU = document.querySelector("#anoCarroU");
+let inputPlacaU = document.querySelector("#placaU");
+let botaoAtualizarUser = document.querySelector("#botao_atualizarUser"); //botâo atualizar do modal cadastrar
+let botaoCancelarUser = document.querySelector("#botao_cancelarUser"); //botâo cancelar do modal cadastrar
+let botaoSairUserModalApagar = document.querySelector("#modalsairUser"); //botâo sair do modal apagar
+let botaoSairUserModalCdstr = document.querySelector("#modalsairU");
+let ModApagaUser = document.querySelector("#modalApagarRecado");
+let msgModalUser = document.querySelector("#msgUser");
+let ModCadastrUser = document.querySelector("#modalCadastrarUser");
+let BtnModalCadastUser = document.querySelector("#modalCadast");
+let ModalApagaUser = new bootstrap.Modal(ModApagaUser);
+let ModalCadastrUser = new bootstrap.Modal(ModCadastrUser);
 // if(usuarioEmail != 'teste123@gmail.com'){
 //   alert("Pagina restrita!");
 //   window.location.href = "../usuario.html";
@@ -18,11 +50,11 @@ let existe = dataStorage.some((usuario) => {
     return usuario.login === loginUsuario;
 });
 if (existe) {
-    for (let usuario of dataStorage) {
-        if (usuario.login == loginUsuario) {
-            userNome = usuario.nome;
-            userEmail = usuario.login;
-            dadosUser = usuario;
+    for (const indice in dataStorage) {
+        if (dataStorage[indice].login == loginUsuario) {
+            userNome = dataStorage[indice].nome;
+            userEmail = dataStorage[indice].login;
+            indiceUser = indice;
         }
     }
 }
@@ -33,7 +65,9 @@ else {
 // salvarNaTabela(listaDriver);
 user.innerHTML = `Bem vindo: <strong id="userHome2">${userNome}</strong>`;
 document.addEventListener("DOMContentLoaded", () => {
-    salvarNoCardUser(dadosUser);
+    let idcNumber = +indiceUser;
+    salvarNoCardUser(dataStorage);
+    console.log(dataStorage[idcNumber].nome);
 });
 botaoSairUser.addEventListener("click", logOutUser);
 function logOutUser() {
@@ -43,15 +77,20 @@ function logOutUser() {
     window.location.href = "../index.html";
 }
 function salvarNoCardUser(dadosdriver) {
-    let indcString = dadosdriver.id;
+    let indiceUser = "";
+    for (const indice in dadosdriver) {
+        if (dadosdriver[indice].login == loginUsuario) {
+            indiceUser = indice;
+        }
+    }
+    let indcString = indiceUser;
+    let indcString2 = indiceUser;
     let indcNumber = +indcString;
+    let indcNumber2 = +indcString;
     indcNumber++;
-    // indcString = indcNumber.toString();
-    // dadosdriver.id = indcString;
-    // window.localStorage.setItem(
-    //   "dados-usuario",
-    //   JSON.stringify(dataStorage)
-    // );
+    indcString = indcNumber.toString();
+    dadosdriver[indcNumber2].id = indcString;
+    window.localStorage.setItem("dados-usuario", JSON.stringify(dataStorage));
     let sectionCard = document.createElement("section");
     // let divCardTtl = document.createElement("div");
     let divCardTRst = document.createElement("div");
@@ -190,100 +229,125 @@ function salvarNoCardUser(dadosdriver) {
     if (indcNumber % 2 != 0) {
         sectionCard.setAttribute('style', 'background: linear-gradient(to right,rgba(44 203 190 / 80%),rgba(73, 44, 203, 0.6))');
     }
-    labelRegistro.setAttribute("id", dadosdriver.id);
+    labelRegistro.setAttribute("id", dadosdriver[indcNumber2].id);
     labelRegistro.innerHTML = `Id: `;
-    registro.innerHTML = dadosdriver.id;
+    registro.innerHTML = dadosdriver[indcNumber2].id;
     labelNome.innerHTML = `Motorista: `;
-    nome.innerHTML = dadosdriver.nome;
+    nome.innerHTML = dadosdriver[indcNumber2].nome;
     labelIdade.innerHTML = `Idade: `;
-    idade.innerHTML = dadosdriver.idade;
+    idade.innerHTML = dadosdriver[indcNumber2].idade;
     labelCpf.innerHTML = `CPF : `;
-    cpf.innerHTML = dadosdriver.cpf;
+    cpf.innerHTML = dadosdriver[indcNumber2].cpf;
     labelRua.innerHTML = `Rua: `;
-    rua.innerHTML = dadosdriver.rua;
+    rua.innerHTML = dadosdriver[indcNumber2].rua;
     labelNumRua.innerHTML = `Nº Rua: `;
-    numRua.innerHTML = dadosdriver.numRua;
+    numRua.innerHTML = dadosdriver[indcNumber2].numRua;
     labelBairro.innerHTML = `Bairro: `;
-    bairro.innerHTML = dadosdriver.bairro;
+    bairro.innerHTML = dadosdriver[indcNumber2].bairro;
     labelCidade.innerHTML = `Cidade: `;
-    cidade.innerHTML = dadosdriver.cidade;
+    cidade.innerHTML = dadosdriver[indcNumber2].cidade;
     labelFone.innerHTML = `Fone: `;
-    fone.innerHTML = dadosdriver.fone;
+    fone.innerHTML = dadosdriver[indcNumber2].fone;
     labelCnh.innerHTML = `CNH: `;
-    cnh.innerHTML = dadosdriver.cnh;
+    cnh.innerHTML = dadosdriver[indcNumber2].cnh;
     labelcategCnh.innerHTML = `Ctg CNH: `;
-    categCnh.innerHTML = dadosdriver.categCnh;
+    categCnh.innerHTML = dadosdriver[indcNumber2].categCnh;
     labelDataCnh.innerHTML = `Emissão: `;
-    dataCnh.innerHTML = dadosdriver.dataCnh;
+    dataCnh.innerHTML = dadosdriver[indcNumber2].dataCnh;
     labelvalidadecnh.innerHTML = `Vld CNH: `;
-    validadecnh.innerHTML = dadosdriver.validadecnh;
+    validadecnh.innerHTML = dadosdriver[indcNumber2].validadecnh;
     labelmodlCarro.innerHTML = `Mdl Veículo: `;
-    modlCarro.innerHTML = dadosdriver.modlCarro;
+    modlCarro.innerHTML = dadosdriver[indcNumber2].modlCarro;
     labelcorCarro.innerHTML = `Cor Veículo: `;
-    corCarro.innerHTML = dadosdriver.corCarro;
+    corCarro.innerHTML = dadosdriver[indcNumber2].corCarro;
     labelAnoCarro.innerHTML = `Ano Veículo: `;
-    anoCarro.innerHTML = dadosdriver.anoCarro;
+    anoCarro.innerHTML = dadosdriver[indcNumber2].anoCarro;
     labelPlacaCarro.innerHTML = `Placa :`;
-    placaCarro.innerHTML = dadosdriver.placa;
+    placaCarro.innerHTML = dadosdriver[indcNumber2].placa;
     labelAcao.innerHTML = `Ações: `;
     acoes.innerHTML = `
-             <td><button type="button" value="" class="inf_botao" onclick="prepararEdicaoUser(${dadosdriver})" id="inf_botao_editar">Editar</button></td>
-             <td><button type="button" value="" class="inf_botao" onclick="apagarRegistroUser(${dadosdriver})" id="inf_botao_apagar">apagar</button></td>
+             <td><button type="button" value="" class="inf_botao" onclick="prepararEdicaoUser(${indiceUser})" id="inf_botao_editar">Editar</button></td>
+             <td><button type="button" value="" class="inf_botao" onclick="apagarRegistroUser(${indiceUser})" id="inf_botao_apagar">apagar</button></td>
                                      `;
 }
-function prepararEdicaoUser(dadosdriver) {
-    BotnSalvarMdl.setAttribute("style", "display:none");
+function prepararEdicaoUser(registroID) {
+    BotnSalvarMdlUser.setAttribute("style", "display:none");
     // botaoSalvar.setAttribute("style", "display: none");
-    botaoAtualizar.setAttribute("style", "display: inline-block");
-    botaoAtualizar.setAttribute("onclick", `atualizarRegistro(${dadosdriver})`);
-    botaoCancelar.setAttribute("style", "display: inline-block");
-    botaoCancelar.setAttribute("onclick", `cancelarEdicao()`);
-    inputNome.value = dadosdriver.nome;
-    inputIdade.value = dadosdriver.idade;
-    inputCpf.value = dadosdriver.cpf;
-    inputLogin.value = dadosdriver.login;
-    inputSenha.value = dadosdriver.senha;
-    inputRua.value = dadosdriver.rua;
-    inputNumRua.value = dadosdriver.numRua;
-    inputBairro.value = dadosdriver.bairro;
-    inputCidade.value = dadosdriver.cidade;
-    inputFone.value = dadosdriver.fone;
-    inputCnh.value = dadosdriver.cnh;
-    inputCatCnh.value = dadosdriver.categCnh;
-    inputDataCnh.value = dadosdriver.dataCnh;
-    inputValidCnh.value = dadosdriver.validadecnh;
-    inputModCarro.value = dadosdriver.modlCarro;
-    inputCorCarro.value = dadosdriver.corCarro;
-    inputAnoCarro.value = dadosdriver.anoCarro;
-    inputPlaca.value = dadosdriver.placa;
-    ModalCadastr.show();
+    botaoAtualizarUser.setAttribute("style", "display: inline-block");
+    botaoAtualizarUser.setAttribute("onclick", `atualizarRegistroUser(${registroID})`);
+    botaoCancelarUser.setAttribute("style", "display: inline-block");
+    botaoCancelarUser.setAttribute("onclick", `cancelarEdicaoUser()`);
+    let indcString = registroID;
+    let indcNumber2 = +indcString;
+    inputCadastroNomeU.value = dataStorage[indcNumber2].nome;
+    inputIdadeU.value = dataStorage[indcNumber2].idade;
+    inputCpfU.value = dataStorage[indcNumber2].cpf;
+    // inputLoginU.value = dataStorage[indcNumber2].login;
+    inputCadastroSenhaU.value = dataStorage[indcNumber2].senha;
+    inputRuaU.value = dataStorage[indcNumber2].rua;
+    inputNumRuaU.value = dataStorage[indcNumber2].numRua;
+    inputBairroU.value = dataStorage[indcNumber2].bairro;
+    inputCidadeU.value = dataStorage[indcNumber2].cidade;
+    inputFoneU.value = dataStorage[indcNumber2].fone;
+    inputCnhU.value = dataStorage[indcNumber2].cnh;
+    inputCatCnhU.value = dataStorage[indcNumber2].categCnh;
+    inputDataCnhU.value = dataStorage[indcNumber2].dataCnh;
+    inputValidCnhU.value = dataStorage[indcNumber2].validadecnh;
+    inputModCarroU.value = dataStorage[indcNumber2].modlCarro;
+    inputCorCarroU.value = dataStorage[indcNumber2].corCarro;
+    inputAnoCarroU.value = dataStorage[indcNumber2].anoCarro;
+    inputPlacaU.value = dataStorage[indcNumber2].placa;
+    // let Driver: Driver = {
+    //   id: "",
+    //   nome: nomeCadastro,
+    //   idade: idadeCadastro,
+    //   cpf: cpf,
+    //   login:  loginCadastro, 
+    //   senha: senhaCadastro, 
+    //   placa: placaCadastro,
+    //   rua: ruaCadastro,
+    //   numRua: numeroruaCadastro,
+    //   bairro: bairroCadastro,
+    //   cidade: cidadeCadastro,
+    //   fone: foneCadastro,
+    //   cnh: cnhCadastro,
+    //   categCnh: catcnhCadastro,
+    //   dataCnh: dataCnhCadastro,
+    //   validadecnh: validCnhCadastro,
+    //   modlCarro: modlCarroCadastro,
+    //   corCarro: corCarroCadastro,
+    //   anoCarro: anoCarroCadastro,
+    // };
+    ModalCadastrUser.show();
     // inputNome.value = listaDriver[registroID].nome;
     // inputIdade.value = listaDriver[registroID].detalhamento;
 }
-function atualizarRegistroUser(dadosdriver) {
-    let idCadastro = dadosdriver.id;
+function atualizarRegistroUser(registroID) {
+    let indcString = registroID;
+    let indcNumber2 = +indcString;
+    let idCadastro = dataStorage[indcNumber2].id;
     let idNumber = +idCadastro;
     // let idNumber2 = +idCadastro;
     // idNumber++;
     // idCadastro = idNumber.toString();
-    let nomeCadastro = inputNome.value;
-    let idadeCadastro = inputIdade.value;
-    let cpfCadastro = inputCpf.value;
-    let loginCadastro = inputLogin.value;
-    let senhaCadastro = inputSenha.value;
-    let ruaCadastro = inputRua.value;
-    let numeroruaCadastro = inputNumRua.value;
-    let bairroCadastro = inputBairro.value;
-    let cidadeCadastro = inputCidade.value;
-    let foneCadastro = inputFone.value;
-    let cnhCadastro = inputCnh.value;
-    let catcnhCadastro = inputCatCnh.value;
-    let dataCnhCadastro = inputDataCnh.value;
-    let validCnhCadastro = inputValidCnh.value;
-    let modlCarroCadastro = inputModCarro.value;
-    let corCarroCadastro = inputCorCarro.value;
-    let anoCarroCadastro = inputAnoCarro.value;
-    let placaCadstro = inputPlaca.value;
+    let nomeCadastro = inputCadastroNomeU.value;
+    let idadeCadastro = inputIdadeU.value;
+    let cpfCadastro = inputCpfU.value;
+    let loginCadastro = inputCadastroEmailU.value;
+    let senhaCadastro = inputCadastroSenhaU.value;
+    let ruaCadastro = inputRuaU.value;
+    let numeroruaCadastro = inputNumRuaU.value;
+    let bairroCadastro = inputBairroU.value;
+    let cidadeCadastro = inputCidadeU.value;
+    let foneCadastro = inputFoneU.value;
+    let cnhCadastro = inputCnhU.value;
+    let catcnhCadastro = inputCatCnhU.value;
+    let dataCnhCadastro = inputDataCnhU.value;
+    let validCnhCadastro = inputValidCnhU.value;
+    let modlCarroCadastro = inputModCarroU.value;
+    let corCarroCadastro = inputCorCarroU.value;
+    let anoCarroCadastro = inputAnoCarroU.value;
+    let placaCadstro = inputPlacaU.value;
     let DriverEditado = {
         id: idCadastro,
         nome: nomeCadastro,
@@ -324,24 +388,55 @@ function atualizarRegistroUser(dadosdriver) {
     // recadoEditado.corCarro = corCarroCadastro;
     // recadoEditado.anoCarro = anoCarroCadastro;
     // recadoEditado.placa = placaCadstro;
-    dataStorage.splice(idNumber, 1, DriverEditado);
-    window.localStorage.setItem("dados-usuario", JSON.stringify(listaUsuarios));
+    dataStorage.splice(indcNumber2, 1, DriverEditado);
+    window.localStorage.setItem("dados-usuario", JSON.stringify(dataStorage));
     window.location.reload();
 }
-function apagarRegistroUser(dadosdriver) {
-    let indcString = dadosdriver.id;
+function apagarRegistroUser(registroID) {
+    let indcString = registroID;
     let indcNumber = +indcString;
     let indcNumber2 = +indcString;
-    indcNumber2--;
-    msgModal.innerHTML = `Tem certeza que deseja remover o recado de registro ID ${indcNumber}?`;
-    ModalApaga.show();
-    let Apagardriver = document.querySelector("#ApagarRecados");
+    indcNumber++;
+    msgModalUser.innerHTML = `Tem certeza que deseja remover o recado de registro ID ${indcNumber}?`;
+    ModalApagaUser.show();
+    let Apagardriver = document.querySelector("#ApagarRecadosUser");
     // let confirma:boolean=true;
     Apagardriver.addEventListener("click", () => {
         dataStorage.splice(indcNumber2, 1);
         // confirma = false;
-        salvarNoStorage(listaUsuarios);
+        salvarNoStorage(dataStorage);
         window.location.reload();
     });
 }
 ;
+function modalCadastraUser() {
+    ModalCadastrUser.show();
+}
+function apagandoUser(indice) {
+    ModalApagaUser.show();
+    let Apagardriver = document.querySelector("#ApagarRecadosUser");
+    // let ApagarRecado = document.querySelector(
+    //   "#ApagarRecado"
+    // ) as HTMLButtonElement;
+    Apagardriver.addEventListener("click", () => {
+        listaDriver.splice(indice, 1);
+        salvarNoStorage(dataStorage);
+        window.location.reload();
+    });
+    // ApagarRecado.addEventListener("click", () => {
+    //   listaDriver.splice(indice, 1);
+    //   salvarNoStorage(listaUsuarios);
+    //   window.location.reload();
+    // });
+}
+function cancelarEdicaoUser() {
+    botaoCancelarUser.setAttribute("onclick", `${limparCamposUser()}`);
+    botaoSalvar.setAttribute("style", "display: inline-block");
+    botaoAtualizarUser.setAttribute("style", "display: none");
+    botaoCancelarUser.setAttribute("style", "display: none");
+}
+function limparCamposUser() {
+    inputCadastroNomeU.value = "";
+    inputIdadeU.value = "";
+    inputCadastroNomeU.focus();
+}

@@ -10,13 +10,62 @@ let userEmail: string = "";
 let indiceUser: string = "";
 let dadosUser: Driver;
 
-let formUsuario = document.querySelector("#formCadastrUsuario") as HTMLFormElement;
+// let formUsuario = document.querySelector("#formCadastrUsuario") as HTMLFormElement;
 
 let DadosDriver = document.querySelector("#formUser") as HTMLDivElement;
 
 let botaoSairUser = document.querySelector("#botaoSairUser") as HTMLButtonElement;
 
 let cardDadosUser = document.querySelector("#row-cardUser") as HTMLDivElement;
+
+let formularioUser = document.querySelector("#formCadastrUsuario") as HTMLFormElement; //tag form do modal cadasdtrar
+let BotnSalvarMdlUser = document.querySelector('#CadastrarRecadosUser') as HTMLButtonElement; //submit do form do modal cadastrqr
+
+let inputCadastroNomeU = document.querySelector('#nomeU') as HTMLInputElement; //OK
+let inputCadastroEmailU = document.querySelector('#input-cadastro-emailU') as HTMLInputElement;
+let inputCpfU = document.querySelector('#cpfU') as HTMLInputElement; //ok
+let inputCadastroSenhaU = document.querySelector('#input-cadastro-senhaU') as HTMLInputElement;
+// let inputLoginU = document.querySelector("#login") as HTMLInputElement;
+
+let inputSenhaconfirmaU = document.querySelector("#senha-confirmU") as HTMLInputElement;
+let inputIdadeU = document.querySelector(
+  "#idadeU"
+) as HTMLInputElement; //ok
+let inputRuaU = document.querySelector("#ruaU") as HTMLInputElement;
+let inputNumRuaU = document.querySelector("#numRuaU") as HTMLInputElement;
+let inputBairroU= document.querySelector("#bairroU") as HTMLInputElement;
+let inputCidadeU = document.querySelector("#cidadeU") as HTMLInputElement;
+let inputFoneU = document.querySelector("#foneU") as HTMLInputElement;
+let inputCnhU = document.querySelector("#cnhU") as HTMLInputElement;
+let inputCatCnhU = document.querySelector("#categCnhU") as HTMLInputElement;
+let inputDataCnhU = document.querySelector("#dataCnhU") as HTMLInputElement;
+let inputValidCnhU = document.querySelector("#validadecnhU") as HTMLInputElement;
+let inputModCarroU = document.querySelector("#modlCarroU") as HTMLInputElement;
+let inputCorCarroU = document.querySelector("#corCarroU") as HTMLInputElement;
+let inputAnoCarroU = document.querySelector("#anoCarroU") as HTMLInputElement;
+let inputPlacaU = document.querySelector("#placaU") as HTMLInputElement;
+
+let botaoAtualizarUser = document.querySelector(
+  "#botao_atualizarUser"
+) as HTMLButtonElement; //botâo atualizar do modal cadastrar
+let botaoCancelarUser = document.querySelector(
+  "#botao_cancelarUser"
+) as HTMLButtonElement; //botâo cancelar do modal cadastrar
+
+let botaoSairUserModalApagar = document.querySelector("#modalsairUser") as HTMLButtonElement; //botâo sair do modal apagar
+
+let botaoSairUserModalCdstr = document.querySelector("#modalsairU") as HTMLButtonElement;
+
+let ModApagaUser = document.querySelector("#modalApagarRecado") as HTMLDivElement;
+let msgModalUser = document.querySelector("#msgUser") as HTMLParagraphElement;
+
+let ModCadastrUser = document.querySelector("#modalCadastrarUser") as HTMLDivElement;
+
+let BtnModalCadastUser = document.querySelector("#modalCadast") as HTMLButtonElement;
+
+let ModalApagaUser = new bootstrap.Modal (ModApagaUser);
+
+let ModalCadastrUser = new bootstrap.Modal(ModCadastrUser);
 
 // if(usuarioEmail != 'teste123@gmail.com'){
 //   alert("Pagina restrita!");
@@ -28,11 +77,11 @@ let cardDadosUser = document.querySelector("#row-cardUser") as HTMLDivElement;
     });
 
 if (existe){
-for (let usuario of dataStorage) {
-  if (usuario.login == loginUsuario) {
-    userNome = usuario.nome;
-    userEmail = usuario.login;
-    dadosUser = usuario;
+for (const indice in dataStorage) {
+  if (dataStorage[indice].login == loginUsuario) {
+    userNome = dataStorage[indice].nome;
+    userEmail = dataStorage[indice].login;
+    indiceUser = indice;
   }
 }
 }
@@ -45,8 +94,9 @@ else{
   user.innerHTML = `Bem vindo: <strong id="userHome2">${userNome}</strong>`;
 
 document.addEventListener("DOMContentLoaded", () => {
-  
-  salvarNoCardUser(dadosUser);
+  let idcNumber = +indiceUser;
+  salvarNoCardUser(dataStorage);
+  console.log(dataStorage[idcNumber].nome);
 });
 
 botaoSairUser.addEventListener("click", logOutUser);
@@ -58,17 +108,29 @@ function logOutUser(): void {
   window.location.href = "../index.html";
 }
 
-function salvarNoCardUser(dadosdriver: Driver) {
+function salvarNoCardUser(dadosdriver: Driver[]) {
+  let indiceUser = "";
+  for (const indice in dadosdriver) {
+  if (dadosdriver[indice].login == loginUsuario) {
+    indiceUser = indice;
+  }
+}
 
-      let indcString = dadosdriver.id;
+      let indcString = indiceUser;
+      let indcString2 = indiceUser;
+     
+
       let indcNumber = +indcString;
+      let indcNumber2 = +indcString;
+      
       indcNumber++;
-      // indcString = indcNumber.toString();
-      // dadosdriver.id = indcString;
-      // window.localStorage.setItem(
-      //   "dados-usuario",
-      //   JSON.stringify(dataStorage)
-      // );
+      indcString = indcNumber.toString();
+  
+      dadosdriver[indcNumber2].id = indcString;
+      window.localStorage.setItem(
+        "dados-usuario",
+        JSON.stringify(dataStorage)
+      );
 
       
       let sectionCard = document.createElement("section");
@@ -233,108 +295,137 @@ function salvarNoCardUser(dadosdriver: Driver) {
         sectionCard.setAttribute('style', 'background: linear-gradient(to right,rgba(44 203 190 / 80%),rgba(73, 44, 203, 0.6))');
       }
 
-      labelRegistro.setAttribute("id", dadosdriver.id);
+      labelRegistro.setAttribute("id", dadosdriver[indcNumber2].id);
       labelRegistro.innerHTML = `Id: `;
-      registro.innerHTML = dadosdriver.id;
+      registro.innerHTML = dadosdriver[indcNumber2].id;
       labelNome.innerHTML = `Motorista: `;
-      nome.innerHTML = dadosdriver.nome;
+      nome.innerHTML = dadosdriver[indcNumber2].nome;
       labelIdade.innerHTML = `Idade: `;
-      idade.innerHTML = dadosdriver.idade;
+      idade.innerHTML = dadosdriver[indcNumber2].idade;
       labelCpf.innerHTML = `CPF : `;
-      cpf.innerHTML = dadosdriver.cpf;
+      cpf.innerHTML = dadosdriver[indcNumber2].cpf;
       labelRua.innerHTML = `Rua: `;
-      rua.innerHTML = dadosdriver.rua;
+      rua.innerHTML = dadosdriver[indcNumber2].rua;
       labelNumRua.innerHTML = `Nº Rua: `;
-      numRua.innerHTML = dadosdriver.numRua;
+      numRua.innerHTML = dadosdriver[indcNumber2].numRua;
       labelBairro.innerHTML = `Bairro: `;
-      bairro.innerHTML = dadosdriver.bairro;
+      bairro.innerHTML = dadosdriver[indcNumber2].bairro;
       labelCidade.innerHTML = `Cidade: `;
-      cidade.innerHTML = dadosdriver.cidade;
+      cidade.innerHTML = dadosdriver[indcNumber2].cidade;
       labelFone.innerHTML = `Fone: `;
-      fone.innerHTML = dadosdriver.fone;
+      fone.innerHTML = dadosdriver[indcNumber2].fone;
       labelCnh.innerHTML = `CNH: `;
-      cnh.innerHTML = dadosdriver.cnh;
+      cnh.innerHTML = dadosdriver[indcNumber2].cnh;
       labelcategCnh.innerHTML = `Ctg CNH: `;
-      categCnh.innerHTML = dadosdriver.categCnh;
+      categCnh.innerHTML = dadosdriver[indcNumber2].categCnh;
       labelDataCnh.innerHTML = `Emissão: `;
-      dataCnh.innerHTML = dadosdriver.dataCnh;
+      dataCnh.innerHTML = dadosdriver[indcNumber2].dataCnh;
       labelvalidadecnh.innerHTML = `Vld CNH: `;
-      validadecnh.innerHTML = dadosdriver.validadecnh;
+      validadecnh.innerHTML = dadosdriver[indcNumber2].validadecnh;
       labelmodlCarro.innerHTML = `Mdl Veículo: `;
-      modlCarro.innerHTML = dadosdriver.modlCarro;
+      modlCarro.innerHTML = dadosdriver[indcNumber2].modlCarro;
       labelcorCarro.innerHTML = `Cor Veículo: `;
-      corCarro.innerHTML = dadosdriver.corCarro;
+      corCarro.innerHTML = dadosdriver[indcNumber2].corCarro;
       labelAnoCarro.innerHTML = `Ano Veículo: `;
-      anoCarro.innerHTML = dadosdriver.anoCarro;
+      anoCarro.innerHTML = dadosdriver[indcNumber2].anoCarro;
       labelPlacaCarro.innerHTML = `Placa :`;
-      placaCarro.innerHTML = dadosdriver.placa;
+      placaCarro.innerHTML = dadosdriver[indcNumber2].placa;
       labelAcao.innerHTML = `Ações: `;
       acoes.innerHTML = `
-             <td><button type="button" value="" class="inf_botao" onclick="prepararEdicaoUser(${dadosdriver})" id="inf_botao_editar">Editar</button></td>
-             <td><button type="button" value="" class="inf_botao" onclick="apagarRegistroUser(${dadosdriver})" id="inf_botao_apagar">apagar</button></td>
+             <td><button type="button" value="" class="inf_botao" onclick="prepararEdicaoUser(${indiceUser})" id="inf_botao_editar">Editar</button></td>
+             <td><button type="button" value="" class="inf_botao" onclick="apagarRegistroUser(${indiceUser})" id="inf_botao_apagar">apagar</button></td>
                                      `;
     }
   
-function prepararEdicaoUser(dadosdriver: Driver) {
-  BotnSalvarMdl.setAttribute("style", "display:none");
+function prepararEdicaoUser(registroID: string) {
+  BotnSalvarMdlUser.setAttribute("style", "display:none");
   // botaoSalvar.setAttribute("style", "display: none");
-  botaoAtualizar.setAttribute("style", "display: inline-block");
-  botaoAtualizar.setAttribute("onclick", `atualizarRegistro(${dadosdriver})`);
-  botaoCancelar.setAttribute("style", "display: inline-block");
-  botaoCancelar.setAttribute("onclick", `cancelarEdicao()`);
-  
+  botaoAtualizarUser.setAttribute("style", "display: inline-block");
+  botaoAtualizarUser.setAttribute("onclick", `atualizarRegistroUser(${registroID})`);
+  botaoCancelarUser.setAttribute("style", "display: inline-block");
+  botaoCancelarUser.setAttribute("onclick", `cancelarEdicaoUser()`);
 
-inputNome.value = dadosdriver.nome;
-inputIdade.value = dadosdriver.idade;
-inputCpf.value = dadosdriver.cpf;
-inputLogin.value = dadosdriver.login;
-inputSenha.value = dadosdriver.senha;
-inputRua.value = dadosdriver.rua;
-inputNumRua.value = dadosdriver.numRua;
-inputBairro.value = dadosdriver.bairro;
-inputCidade.value = dadosdriver.cidade;
-inputFone.value = dadosdriver.fone;
-inputCnh.value = dadosdriver.cnh;
-inputCatCnh.value = dadosdriver.categCnh;
-inputDataCnh.value = dadosdriver.dataCnh;
-inputValidCnh.value = dadosdriver.validadecnh;
-inputModCarro.value = dadosdriver.modlCarro;
-inputCorCarro.value = dadosdriver.corCarro;
-inputAnoCarro.value = dadosdriver.anoCarro;
-inputPlaca.value = dadosdriver.placa;
+      let indcString = registroID;
+      
+      let indcNumber2 = +indcString;
+      
+  inputCadastroNomeU.value = dataStorage[indcNumber2].nome;
+  inputIdadeU.value = dataStorage[indcNumber2].idade;
+  inputCpfU.value = dataStorage[indcNumber2].cpf;
+  // inputLoginU.value = dataStorage[indcNumber2].login;
+  inputCadastroSenhaU.value = dataStorage[indcNumber2].senha;
+  inputRuaU.value = dataStorage[indcNumber2].rua;
+  inputNumRuaU.value = dataStorage[indcNumber2].numRua;
+  inputBairroU.value = dataStorage[indcNumber2].bairro;
+  inputCidadeU.value = dataStorage[indcNumber2].cidade;
+  inputFoneU.value = dataStorage[indcNumber2].fone;
+  inputCnhU.value = dataStorage[indcNumber2].cnh;
+  inputCatCnhU.value = dataStorage[indcNumber2].categCnh;
+  inputDataCnhU.value = dataStorage[indcNumber2].dataCnh;
+  inputValidCnhU.value = dataStorage[indcNumber2].validadecnh;
+  inputModCarroU.value = dataStorage[indcNumber2].modlCarro;
+  inputCorCarroU.value = dataStorage[indcNumber2].corCarro;
+  inputAnoCarroU.value = dataStorage[indcNumber2].anoCarro;
+  inputPlacaU.value = dataStorage[indcNumber2].placa;
 
-ModalCadastr.show();
+  // let Driver: Driver = {
+  //   id: "",
+  //   nome: nomeCadastro,
+  //   idade: idadeCadastro,
+  //   cpf: cpf,
+  //   login:  loginCadastro, 
+  //   senha: senhaCadastro, 
+  //   placa: placaCadastro,
+  //   rua: ruaCadastro,
+  //   numRua: numeroruaCadastro,
+  //   bairro: bairroCadastro,
+  //   cidade: cidadeCadastro,
+  //   fone: foneCadastro,
+  //   cnh: cnhCadastro,
+  //   categCnh: catcnhCadastro,
+  //   dataCnh: dataCnhCadastro,
+  //   validadecnh: validCnhCadastro,
+  //   modlCarro: modlCarroCadastro,
+  //   corCarro: corCarroCadastro,
+  //   anoCarro: anoCarroCadastro,
+  // };
+
+ModalCadastrUser.show();
 
   // inputNome.value = listaDriver[registroID].nome;
   // inputIdade.value = listaDriver[registroID].detalhamento;
 }
 
-function atualizarRegistroUser(dadosdriver: Driver) {
+function atualizarRegistroUser(registroID: string) {
 
-  let idCadastro = dadosdriver.id;
+   let indcString = registroID;
+      
+      let indcNumber2 = +indcString;
+
+  let idCadastro = dataStorage[indcNumber2].id;
   let idNumber = +idCadastro;
   // let idNumber2 = +idCadastro;
   // idNumber++;
   // idCadastro = idNumber.toString();
   
-  let nomeCadastro = inputNome.value;
-  let idadeCadastro = inputIdade.value;
-  let cpfCadastro = inputCpf.value;
-  let loginCadastro = inputLogin.value;
-  let senhaCadastro = inputSenha.value;
-  let ruaCadastro = inputRua.value;
-  let numeroruaCadastro = inputNumRua.value;
-  let bairroCadastro = inputBairro.value;
-  let cidadeCadastro = inputCidade.value;
-  let foneCadastro = inputFone.value;
-  let cnhCadastro = inputCnh.value;
-  let catcnhCadastro = inputCatCnh.value;
-  let dataCnhCadastro = inputDataCnh.value;
-  let validCnhCadastro = inputValidCnh.value;
-  let modlCarroCadastro = inputModCarro.value;
-  let corCarroCadastro = inputCorCarro.value;
-  let anoCarroCadastro = inputAnoCarro.value;
-  let placaCadstro = inputPlaca.value;
+  let nomeCadastro = inputCadastroNomeU.value;
+  let idadeCadastro = inputIdadeU.value;
+  let cpfCadastro = inputCpfU.value;
+  let loginCadastro = inputCadastroEmailU.value;
+  let senhaCadastro = inputCadastroSenhaU.value;
+  let ruaCadastro = inputRuaU.value;
+  let numeroruaCadastro = inputNumRuaU.value;
+  let bairroCadastro = inputBairroU.value;
+  let cidadeCadastro = inputCidadeU.value;
+  let foneCadastro = inputFoneU.value;
+  let cnhCadastro = inputCnhU.value;
+  let catcnhCadastro = inputCatCnhU.value;
+  let dataCnhCadastro = inputDataCnhU.value;
+  let validCnhCadastro = inputValidCnhU.value;
+  let modlCarroCadastro = inputModCarroU.value;
+  let corCarroCadastro = inputCorCarroU.value;
+  let anoCarroCadastro = inputAnoCarroU.value;
+  let placaCadstro = inputPlacaU.value;
 
   let DriverEditado: Driver = {
     id: idCadastro,
@@ -382,22 +473,24 @@ function atualizarRegistroUser(dadosdriver: Driver) {
   // recadoEditado.anoCarro = anoCarroCadastro;
   // recadoEditado.placa = placaCadstro;
 
-  dataStorage.splice(idNumber, 1, DriverEditado);
-  window.localStorage.setItem("dados-usuario", JSON.stringify(listaUsuarios));
+  dataStorage.splice(indcNumber2, 1, DriverEditado);
+  window.localStorage.setItem("dados-usuario", JSON.stringify(dataStorage));
   window.location.reload();
 }
 
-function apagarRegistroUser(dadosdriver: Driver): void {
-  let indcString = dadosdriver.id;
+function apagarRegistroUser(registroID: string): void {
+  
+  let indcString = registroID;
+
   let indcNumber = +indcString;
   let indcNumber2 = +indcString;
-  indcNumber2--;
+  indcNumber++;
 
-  msgModal.innerHTML = `Tem certeza que deseja remover o recado de registro ID ${indcNumber}?`;
-  ModalApaga.show();
+  msgModalUser.innerHTML = `Tem certeza que deseja remover o recado de registro ID ${indcNumber}?`;
+  ModalApagaUser.show();
 
   let Apagardriver = document.querySelector(
-    "#ApagarRecados"
+    "#ApagarRecadosUser"
   ) as HTMLButtonElement;
 
     // let confirma:boolean=true;
@@ -406,9 +499,50 @@ function apagarRegistroUser(dadosdriver: Driver): void {
     
     // confirma = false;
     
-    salvarNoStorage(listaUsuarios);
+    salvarNoStorage(dataStorage);
     window.location.reload();
     
   });
 
 };
+
+function modalCadastraUser (): void{
+  ModalCadastrUser.show();
+}
+
+function apagandoUser (indice: Driver[]): void {
+  ModalApagaUser.show();
+
+  let Apagardriver= document.querySelector(
+    "#ApagarRecadosUser"
+  ) as HTMLButtonElement;
+
+  // let ApagarRecado = document.querySelector(
+  //   "#ApagarRecado"
+  // ) as HTMLButtonElement;
+
+  Apagardriver.addEventListener("click", () => {
+    listaDriver.splice(indice, 1);
+    salvarNoStorage(dataStorage);
+    window.location.reload();
+  });
+
+  // ApagarRecado.addEventListener("click", () => {
+  //   listaDriver.splice(indice, 1);
+  //   salvarNoStorage(listaUsuarios);
+  //   window.location.reload();
+  // });
+}
+
+function cancelarEdicaoUser () {
+  botaoCancelarUser.setAttribute("onclick", `${limparCamposUser()}`);
+  botaoSalvar.setAttribute("style", "display: inline-block");
+  botaoAtualizarUser.setAttribute("style", "display: none");
+  botaoCancelarUser.setAttribute("style", "display: none");
+}
+
+function limparCamposUser(): void {
+  inputCadastroNomeU.value = "";
+  inputIdadeU.value = "";
+  inputCadastroNomeU.focus();
+}

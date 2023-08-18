@@ -159,7 +159,7 @@
     cursor: pointer;
   }
   
-  input#botao_atualizar{
+    input#botao_atualizarUser, input#botao_atualizar{
     width: 100px;
     height: 35px;
     background-color: green;
@@ -171,7 +171,7 @@
     display: none;
   }
   
-  input#botao_cancelar{
+    input#botao_cancelarUser, input#botao_cancelar{
     width: 100px;
     height: 35px;
     background-color: red;
@@ -220,6 +220,7 @@
         height: 23vh;
         margin-right: 3vw;
         margin-bottom: 50px;
+        transform: scaleX(-1);
   }
 
   #userHome{

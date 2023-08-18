@@ -106,19 +106,13 @@ let indiceDrv: string = "";
 function cadastrarUsuario(novoUsuario: Driver) {
     let listaUsuarios: Driver[] = buscarUsuariosNoStorage();
 
-    for (let indice in listaUsuarios){
-        indiceDrv = indice;
-    }
+    // for (let indice in listaUsuarios){
+    //     indiceDrv = indice;
+    // }
 
-    let indicDrvNumb = +indiceDrv;
+    // let indicDrvNumb = +indiceDrv;
 
-    let listaDriver = listaUsuarios[indicDrvNumb];
-
-// for (let indice in listaDriver){
-//     if(listaDriver[indice].login == novoUsuario.login){
-//         alert("Essa conta já existe!")
-//     }
-// }
+    // let listaDriver = listaUsuarios[indicDrvNumb];
 
     let existe: boolean = listaUsuarios.some((usuario) => {
         return usuario.login === novoUsuario.login ||  usuario.cpf === novoUsuario.cpf
@@ -226,16 +220,10 @@ function logarNoSistema(usuarioLogando: any) {
         return
     }
     }
-        
-
-    // if (existe && inputLoginEmail.value !== "teste123@gmail.com" && inputLoginSenha.value !== "teste123"){
-    //      sessionStorage.setItem('usuarioLogado', inputLoginEmail.value);
-    //     window.location.href = "../usuario.html";
-    // }
 
     else{
         sessionStorage.setItem('usuarioLogado', inputLoginEmail.value);
-        window.location.href = '../usuario.html';
+        window.location.href = '../user.html';
 
     }
 

@@ -39,8 +39,8 @@ for (const indice in listaUsuarios) {
 }
 
 let listaDriver = listaUsuarios[indiceUsuario];
-let formulario = document.querySelector("#formCadastr") as HTMLFormElement;
-let BotnSalvarMdl = document.querySelector('#CadastrarRecados') as HTMLButtonElement;
+let formulario = document.querySelector("#formCadastr") as HTMLFormElement; //tag form do modal cadasdtrar
+let BotnSalvarMdl = document.querySelector('#CadastrarRecados') as HTMLButtonElement; //submit do form do modal cadastrqr
 let inputNome = document.querySelector("#nome") as HTMLInputElement;
 inputNome.setAttribute('required', 'required');
 let inputLogin = document.querySelector("#login") as HTMLInputElement;
@@ -85,11 +85,14 @@ inputPlaca.setAttribute('required', 'required');
 let botaoSalvar = document.querySelector("#enviar_info") as HTMLButtonElement;
 let botaoAtualizar = document.querySelector(
   "#botao_atualizar"
-) as HTMLButtonElement;
+) as HTMLButtonElement; //botâo atualizar do modal cadastrar
 let botaoCancelar = document.querySelector(
   "#botao_cancelar"
-) as HTMLButtonElement;
-let botaoSair = document.querySelector("#botaoSair") as HTMLButtonElement;
+) as HTMLButtonElement; //botâo cancelar do modal cadastrar
+let botaoSair = document.querySelector("#botaoSair") as HTMLButtonElement; //botâo sair da pagina home
+
+let botaoSairModal = document.querySelector("#modalsairCdst") as HTMLButtonElement;
+
 let tabelaDados = document.querySelector("#tabela-registros") as HTMLDivElement;
 
 let ModApaga = document.querySelector("#modalApagarRecado") as HTMLDivElement;
@@ -530,7 +533,24 @@ function salvarNoCard(dadosdriver: Driver[]) {
 
 function limparCampos(): void {
   inputNome.value = "";
-  inputIdade.value = "";
+  inputAnoCarro.value = "";
+  inputBairro.value = "";
+  inputCatCnh.value = "";
+  inputCidade.value = "";
+  inputCnh.value = "";
+  inputCorCarro.value = "";
+  inputCpf.value = "";
+  inputDataCnh.value = "";
+  inputFone.value = "";
+  inputIdade.value= "";
+  inputLogin.value = "";
+  inputModCarro.value = "";
+  inputNumRua.value = "";
+  inputPlaca.value = "";
+  inputRua.value = "";
+  inputSenha.value = "";
+  inputSenhaconfirma.value = "";
+  inputValidCnh.value = "";
   inputNome.focus();
 }
 
@@ -560,6 +580,9 @@ function logOutAdm(): void {
 // ------------FUNÇÃO DE CADASTRAR COM MODAL------------
 
 function modalCadastra (): void{
+  botaoSairModal.setAttribute("style", "display:none");
+  botaoCancelar.setAttribute("style", "display: inline-block");
+  botaoCancelar.setAttribute("onclick", `cancelarEdicao()`);
   ModalCadastr.show();
 }
 
@@ -591,13 +614,22 @@ function apagando(indice: Driver[]): void {
 
 function cancelarEdicao() {
   botaoCancelar.setAttribute("onclick", `${limparCampos()}`);
+  botaoSairModal.setAttribute("style", "display:none");
   botaoSalvar.setAttribute("style", "display: inline-block");
   botaoAtualizar.setAttribute("style", "display: none");
-  botaoCancelar.setAttribute("style", "display: none");
+  botaoCancelar.setAttribute("style", "display: inline-block");
 }
+
+// function SairEdicao(){
+//   botaoSairModal.setAttribute("onclick", `${limparCampos()}`);
+//   // botaoSalvar.setAttribute("style", "display: inline-block");
+//   botaoAtualizar.setAttribute("style", "display: none");
+//   botaoCancelar.setAttribute("style", "display: none");
+// }
 
 function prepararEdicao(registroID: string) {
   BotnSalvarMdl.setAttribute("style", "display:none");
+   botaoSairModal.setAttribute("style", "display:none");
   // botaoSalvar.setAttribute("style", "display: none");
   botaoAtualizar.setAttribute("style", "display: inline-block");
   botaoAtualizar.setAttribute("onclick", `atualizarRegistro(${registroID})`);
@@ -704,6 +736,7 @@ function atualizarRegistro(registroID: string) {
 
   listaUsuarios.splice(registroID, 1, DriverEditado);
   window.localStorage.setItem("dados-usuario", JSON.stringify(listaUsuarios));
+  limparCampos();
   window.location.reload();
 }
 

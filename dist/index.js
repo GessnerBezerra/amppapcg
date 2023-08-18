@@ -83,16 +83,11 @@ function verificaCampos() {
 let indiceDrv = "";
 function cadastrarUsuario(novoUsuario) {
     let listaUsuarios = buscarUsuariosNoStorage();
-    for (let indice in listaUsuarios) {
-        indiceDrv = indice;
-    }
-    let indicDrvNumb = +indiceDrv;
-    let listaDriver = listaUsuarios[indicDrvNumb];
-    // for (let indice in listaDriver){
-    //     if(listaDriver[indice].login == novoUsuario.login){
-    //         alert("Essa conta já existe!")
-    //     }
+    // for (let indice in listaUsuarios){
+    //     indiceDrv = indice;
     // }
+    // let indicDrvNumb = +indiceDrv;
+    // let listaDriver = listaUsuarios[indicDrvNumb];
     let existe = listaUsuarios.some((usuario) => {
         return usuario.login === novoUsuario.login || usuario.cpf === novoUsuario.cpf;
     });
@@ -172,12 +167,8 @@ function logarNoSistema(usuarioLogando) {
             return;
         }
     }
-    // if (existe && inputLoginEmail.value !== "teste123@gmail.com" && inputLoginSenha.value !== "teste123"){
-    //      sessionStorage.setItem('usuarioLogado', inputLoginEmail.value);
-    //     window.location.href = "../usuario.html";
-    // }
     else {
         sessionStorage.setItem('usuarioLogado', inputLoginEmail.value);
-        window.location.href = '../usuario.html';
+        window.location.href = '../user.html';
     }
 }

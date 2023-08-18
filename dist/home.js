@@ -70,7 +70,8 @@ inputPlaca.setAttribute('required', 'required');
 let botaoSalvar = document.querySelector("#enviar_info");
 let botaoAtualizar = document.querySelector("#botao_atualizar"); //botâo atualizar do modal cadastrar
 let botaoCancelar = document.querySelector("#botao_cancelar"); //botâo cancelar do modal cadastrar
-let botaoSair = document.querySelector("#botaoSair"); //botâo sair do modal cadastrar
+let botaoSair = document.querySelector("#botaoSair"); //botâo sair da pagina home
+let botaoSairModal = document.querySelector("#modalsairCdst");
 let tabelaDados = document.querySelector("#tabela-registros");
 let ModApaga = document.querySelector("#modalApagarRecado");
 let msgModal = document.querySelector("#msg");
@@ -443,7 +444,24 @@ function salvarNoCard(dadosdriver) {
 }
 function limparCampos() {
     inputNome.value = "";
+    inputAnoCarro.value = "";
+    inputBairro.value = "";
+    inputCatCnh.value = "";
+    inputCidade.value = "";
+    inputCnh.value = "";
+    inputCorCarro.value = "";
+    inputCpf.value = "";
+    inputDataCnh.value = "";
+    inputFone.value = "";
     inputIdade.value = "";
+    inputLogin.value = "";
+    inputModCarro.value = "";
+    inputNumRua.value = "";
+    inputPlaca.value = "";
+    inputRua.value = "";
+    inputSenha.value = "";
+    inputSenhaconfirma.value = "";
+    inputValidCnh.value = "";
     inputNome.focus();
 }
 function salvarNoStorage(lst_driver) {
@@ -465,6 +483,9 @@ function logOutAdm() {
 // }
 // ------------FUNÇÃO DE CADASTRAR COM MODAL------------
 function modalCadastra() {
+    botaoSairModal.setAttribute("style", "display:none");
+    botaoCancelar.setAttribute("style", "display: inline-block");
+    botaoCancelar.setAttribute("onclick", `cancelarEdicao()`);
     ModalCadastr.show();
 }
 //-------------- FUNÇÃO DE APAGAR DESABILITADA-----------
@@ -487,12 +508,20 @@ function apagando(indice) {
 }
 function cancelarEdicao() {
     botaoCancelar.setAttribute("onclick", `${limparCampos()}`);
+    botaoSairModal.setAttribute("style", "display:none");
     botaoSalvar.setAttribute("style", "display: inline-block");
     botaoAtualizar.setAttribute("style", "display: none");
-    botaoCancelar.setAttribute("style", "display: none");
+    botaoCancelar.setAttribute("style", "display: inline-block");
 }
+// function SairEdicao(){
+//   botaoSairModal.setAttribute("onclick", `${limparCampos()}`);
+//   // botaoSalvar.setAttribute("style", "display: inline-block");
+//   botaoAtualizar.setAttribute("style", "display: none");
+//   botaoCancelar.setAttribute("style", "display: none");
+// }
 function prepararEdicao(registroID) {
     BotnSalvarMdl.setAttribute("style", "display:none");
+    botaoSairModal.setAttribute("style", "display:none");
     // botaoSalvar.setAttribute("style", "display: none");
     botaoAtualizar.setAttribute("style", "display: inline-block");
     botaoAtualizar.setAttribute("onclick", `atualizarRegistro(${registroID})`);
@@ -585,6 +614,7 @@ function atualizarRegistro(registroID) {
     // recadoEditado.placa = placaCadstro;
     listaUsuarios.splice(registroID, 1, DriverEditado);
     window.localStorage.setItem("dados-usuario", JSON.stringify(listaUsuarios));
+    limparCampos();
     window.location.reload();
 }
 function apagarRegistro(indice) {

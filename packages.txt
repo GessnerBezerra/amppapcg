@@ -1,0 +1,26 @@
+{
+  "name": "av_final_front_end_2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "ts-node-dev --ignore-watch node_modules ./src/index.ts",
+    "build": "npx tsc",
+    "start": "node ./dist/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@hint/configuration-accessibility": "^2.0.27",
+    "@types/bootstrap": "^5.1.12",
+    "hint": "^7.1.10",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.1.6"
+  }
+}
