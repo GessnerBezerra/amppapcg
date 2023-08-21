@@ -158,6 +158,10 @@
     color:white;
     cursor: pointer;
   }
+
+  #scroll{
+    overflow: overlay;
+  }
   
     input#botao_atualizarUser, input#botao_atualizar{
     width: 100px;
@@ -288,10 +292,18 @@
         margin-top: 30vh;
   }
 
+ 
+
   #modalCadast{
-  height: 10vh;
-    margin-left: 35px;
-    position: relative;
+height: 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  width: 8vw;
+  margin-left: 35px;
+  position: relative;
+  cursor: pointer;
     top: 10vh;
   }
 
@@ -516,17 +528,40 @@ margin: 0px;
   display: flex;
   justify-content: flex-end;
 }
+
+ /* border-radius: 20px;
+  height: 8vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* border-radius: 20px; 
+  width: 8vw;
+  margin-left: 35px;
+  position: relative;
+  /* top: 10vh; 
+  cursor: pointer;
+  z-index: 999; */
   
   #botaoSair {
+    height: 5vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     border-radius: 20px;
     cursor: pointer;
+    position: relative;
     z-index: 999;
   }
 
   #botaoSairUser {
-       border-radius: 20px;
-       cursor: pointer;
-       z-index: 999;
+      height: 5vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 20px;
+        cursor: pointer;
+        position: relative;
+        z-index: 999;
   }
   
   #botaoSair::after {
