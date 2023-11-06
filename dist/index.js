@@ -2,8 +2,16 @@
 let btnAcessar = document.getElementById('btn-acessar');
 let btnCadastrar = document.getElementById('btn-cadastrar');
 let container = document.getElementById('container');
+let linkWelcomeLogin = document.getElementById('welcomepg-login');
+let linkWelcomeCadast = document.getElementById('welcomepg-cadast');
 document.addEventListener("DOMContentLoaded", () => {
     container.classList.add('painel-direito-ativo');
+});
+linkWelcomeCadast.addEventListener('click', () => {
+    window.location.href = "../welcome.html";
+});
+linkWelcomeLogin.addEventListener('click', () => {
+    window.location.href = "../welcome.html";
 });
 btnAcessar.addEventListener('click', () => {
     container.classList.remove('painel-direito-ativo');

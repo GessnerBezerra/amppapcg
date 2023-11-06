@@ -103,6 +103,7 @@ button {
   text-transform: uppercase;
   padding: 12px 45px;
   letter-spacing: 1px;
+  margin-top: 5px;
   transition: transform 80ms ease-in;
 }
 
@@ -119,11 +120,18 @@ button.btn-transparente {
   border-color: #ffff;
 }
 
+
+label{
+  color: #fa4113;
+  display: flex;
+  justify-content: left;
+}
+
 form {
   background-color: rgba(253, 253, 253, 0.979);
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   flex-direction: column;
   padding: 0 50px;
   height: 100%;

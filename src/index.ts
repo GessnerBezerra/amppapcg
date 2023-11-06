@@ -1,9 +1,19 @@
 let btnAcessar = document.getElementById('btn-acessar') as HTMLButtonElement;
 let btnCadastrar = document.getElementById('btn-cadastrar') as HTMLButtonElement;
 let container = document.getElementById('container') as HTMLDivElement;
+let linkWelcomeLogin = document.getElementById('welcomepg-login') as HTMLButtonElement;
+let linkWelcomeCadast = document.getElementById('welcomepg-cadast') as HTMLButtonElement;
 
 document.addEventListener("DOMContentLoaded", () => {
   container.classList.add('painel-direito-ativo');
+});
+
+linkWelcomeCadast.addEventListener('click', () => {
+    window.location.href = "../welcome.html";
+});
+
+linkWelcomeLogin.addEventListener('click', () => {
+    window.location.href = "../welcome.html";
 });
 
 btnAcessar.addEventListener('click', () => {
