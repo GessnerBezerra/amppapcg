@@ -1,3 +1,5 @@
+
+
 interface adm {
   login: string;
   senha: string;
@@ -15,6 +17,7 @@ interface Driver {
   bairro: string;
   cidade: string;
   fone: string;
+  residfile: Blob;
   cnh: string;
   categCnh: string;
   dataCnh: string;

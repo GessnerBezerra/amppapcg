@@ -65,6 +65,8 @@ let inputCidade = document.querySelector("#cidade") as HTMLInputElement;
 inputCidade.setAttribute('required', 'required');
 let inputFone = document.querySelector("#fone") as HTMLInputElement;
 inputFone.setAttribute('required', 'required');
+let inputCompResid = document.querySelector("#residFile") as HTMLInputElement;
+inputCompResid.setAttribute('required', 'required');
 let inputCnh = document.querySelector("#cnh") as HTMLInputElement;
 inputCnh.setAttribute('required', 'required');
 let inputCatCnh = document.querySelector("#categCnh") as HTMLInputElement;
@@ -194,6 +196,14 @@ function adicionarNovoRegistro(): void {
   let placaCadastro = inputPlaca.value;
   let cpf = inputCpf.value;
 
+  let residFile = inputCompResid.files;
+    let Meufile = new Blob;
+    if (residFile) {
+       Meufile = residFile[0];
+} else {
+ console.log("Nenhum arquivo foi selecionado");
+}
+
   let Driver: Driver = {
     id: "",
     nome: nomeCadastro,
@@ -207,6 +217,7 @@ function adicionarNovoRegistro(): void {
     bairro: bairroCadastro,
     cidade: cidadeCadastro,
     fone: foneCadastro,
+    residfile: Meufile,
     cnh: cnhCadastro,
     categCnh: catcnhCadastro,
     dataCnh: dataCnhCadastro,
@@ -336,6 +347,7 @@ function salvarNoCard(dadosdriver: Driver[]) {
       let divCardBairro = document.createElement("div");
       let divCardCidade = document.createElement("div");
       let divCardFone = document.createElement("div");
+      let divCardComprResid = document.createElement("div");
       let divCardCnh = document.createElement("div");
       let divCardcategCnh = document.createElement("div");
       let divCardDataCnh = document.createElement("div");
@@ -363,6 +375,9 @@ function salvarNoCard(dadosdriver: Driver[]) {
       let cidade = document.createElement("p");
       let labelFone = document.createElement("label");
       let fone = document.createElement("p");
+      let labelCompResid = document.createElement("label");
+      let compResid = document.createElement("a");
+      let compResidLink = document.createElement("link");
       let labelCnh = document.createElement("label");
       let cnh = document.createElement("p");
       let labelcategCnh = document.createElement("label");
@@ -392,6 +407,7 @@ function salvarNoCard(dadosdriver: Driver[]) {
       divCardBairro.setAttribute("class", "bairro");
       divCardCidade.setAttribute("class", "cidade");
       divCardFone.setAttribute("class", "fone");
+      divCardComprResid.setAttribute("class", "compResid");
       divCardCnh.setAttribute("class", "cnh");
       divCardcategCnh.setAttribute("class", "categCnh");
       divCardDataCnh.setAttribute("class", "datacnh");
@@ -429,6 +445,9 @@ function salvarNoCard(dadosdriver: Driver[]) {
       divCardFone.appendChild(labelFone);
       divCardFone.appendChild(fone);
 
+      divCardComprResid.appendChild(labelCompResid);
+      divCardComprResid.appendChild(compResid);
+
       divCardCnh.appendChild(labelCnh);
       divCardCnh.appendChild(cnh);
 
@@ -456,6 +475,8 @@ function salvarNoCard(dadosdriver: Driver[]) {
       divCardAcao.appendChild(labelAcao);
       divCardAcao.appendChild(acoes);
 
+      compResid.appendChild(compResidLink);
+
       sectionCard.appendChild(divCardTRst);
       // sectionCard.appendChild(divCardTtl);
       sectionCard.appendChild(divCardNome);
@@ -466,6 +487,7 @@ function salvarNoCard(dadosdriver: Driver[]) {
       sectionCard.appendChild(divCardBairro);
       sectionCard.appendChild(divCardCidade);
       sectionCard.appendChild(divCardFone);
+      sectionCard.appendChild(divCardComprResid);
       sectionCard.appendChild(divCardCnh);
       sectionCard.appendChild(divCardcategCnh);
       sectionCard.appendChild(divCardDataCnh);
@@ -506,6 +528,9 @@ function salvarNoCard(dadosdriver: Driver[]) {
       cidade.innerHTML = dadosdriver[indice].cidade;
       labelFone.innerHTML = `Fone: `;
       fone.innerHTML = dadosdriver[indice].fone;
+      labelCompResid.innerHTML = `Compr Residencia: `; 
+      compResid.href = `${URL.createObjectURL(new Blob([dadosdriver[indice].residfile]))}`;
+      compResid.rel = 'tylesheet';
       labelCnh.innerHTML = `CNH: `;
       cnh.innerHTML = dadosdriver[indice].cnh;
       labelcategCnh.innerHTML = `Ctg CNH: `;
@@ -647,6 +672,7 @@ inputNumRua.value = listaUsuarios[registroID].numRua;
 inputBairro.value = listaUsuarios[registroID].bairro;
 inputCidade.value = listaUsuarios[registroID].cidade;
 inputFone.value = listaUsuarios[registroID].fone;
+inputCompResid.value = listaUsuarios[registroID].Residfile;
 inputCnh.value = listaUsuarios[registroID].cnh;
 inputCatCnh.value = listaUsuarios[registroID].categCnh;
 inputDataCnh.value = listaUsuarios[registroID].dataCnh;
@@ -688,6 +714,14 @@ function atualizarRegistro(registroID: string) {
   let anoCarroCadastro = inputAnoCarro.value;
   let placaCadstro = inputPlaca.value;
 
+  let residFile = inputCompResid.files;
+    let Meufile = new Blob;
+    if (residFile) {
+       Meufile = residFile[0];
+    } else {
+    console.log("Nenhum arquivo foi selecionado");
+    }
+
   let DriverEditado: Driver = {
     id: idCadastro,
     nome: nomeCadastro,
@@ -701,6 +735,7 @@ function atualizarRegistro(registroID: string) {
     bairro: bairroCadastro,
     cidade: cidadeCadastro,
     fone: foneCadastro,
+    residfile: Meufile,
     cnh: cnhCadastro,
     categCnh: catcnhCadastro,
     dataCnh: dataCnhCadastro,

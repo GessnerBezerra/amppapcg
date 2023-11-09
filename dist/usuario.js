@@ -348,6 +348,14 @@ function atualizarRegistroUser(registroID) {
     let corCarroCadastro = inputCorCarroU.value;
     let anoCarroCadastro = inputAnoCarroU.value;
     let placaCadstro = inputPlacaU.value;
+    let residFile = inputElement.files;
+    let Meufile = new File([], 'filename.jpg', { type: 'image/jpeg' });
+    if (residFile) {
+        Meufile = residFile[0];
+    }
+    else {
+        console.log("Nenhum arquivo foi selecionado");
+    }
     let DriverEditado = {
         id: idCadastro,
         nome: nomeCadastro,
@@ -361,6 +369,7 @@ function atualizarRegistroUser(registroID) {
         bairro: bairroCadastro,
         cidade: cidadeCadastro,
         fone: foneCadastro,
+        residfile: Meufile,
         cnh: cnhCadastro,
         categCnh: catcnhCadastro,
         dataCnh: dataCnhCadastro,

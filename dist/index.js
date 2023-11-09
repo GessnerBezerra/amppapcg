@@ -34,6 +34,7 @@ let inputNumRuaC = document.querySelector("#numRua");
 let inputBairroC = document.querySelector("#bairro");
 let inputCidadeC = document.querySelector("#cidade");
 let inputFoneC = document.querySelector("#fone");
+let inputElement = document.querySelector('#residFile');
 let inputCnhC = document.querySelector("#cnh");
 let inputCatCnhC = document.querySelector("#categCnh");
 let inputDataCnhC = document.querySelector("#dataCnh");
@@ -65,6 +66,14 @@ function verificaCampos() {
     inputCadastroNomeC.removeAttribute('style');
     inputCadastroEmailC.removeAttribute('style');
     inputCadastroSenhaC.removeAttribute('style');
+    let residFile = inputElement.files;
+    let Meufile = new Blob;
+    if (residFile) {
+        Meufile = residFile[0];
+    }
+    else {
+        console.log("Nenhum arquivo foi selecionado");
+    }
     let novoUsuario = {
         nome: inputCadastroNomeC.value,
         login: inputCadastroEmailC.value,
@@ -77,6 +86,7 @@ function verificaCampos() {
         bairro: inputBairroC.value,
         cidade: inputCidadeC.value,
         fone: inputFoneC.value,
+        residfile: Meufile,
         cnh: inputCnhC.value,
         categCnh: inputCatCnhC.value,
         dataCnh: inputDataCnhC.value,
@@ -96,10 +106,10 @@ function cadastrarUsuario(novoUsuario) {
     // }
     // let indicDrvNumb = +indiceDrv;
     // let listaDriver = listaUsuarios[indicDrvNumb];
-    let existe = listaUsuarios.some((usuario) => {
+    let existeUser = listaUsuarios.some((usuario) => {
         return usuario.login === novoUsuario.login || usuario.cpf === novoUsuario.cpf;
     });
-    if (existe) {
+    if (existeUser) {
         let confirma = confirm("Usuário já está cadastrado. Deseja ir para a página de login?");
         if (confirma) {
             container.classList.add('painel-direito-ativo');
@@ -107,6 +117,17 @@ function cadastrarUsuario(novoUsuario) {
         }
         return;
     }
+    // let existeFile: boolean = listaUsuarios.some((file) => {
+    //     return file.residfile !== null;
+    // });
+    // if (existeFile) {
+    //     let confirma = confirm("Usuário já está cadastrado. Deseja ir para a página de login?");
+    //     if (confirma) {
+    //         container.classList.add('painel-direito-ativo');
+    //         formularioCadastro.reset();
+    //     }
+    //     return
+    // }
     listaUsuarios.push(novoUsuario);
     localStorage.setItem('dados-usuario', JSON.stringify(listaUsuarios));
     alert('Conta criada com sucesso!');

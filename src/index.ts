@@ -44,6 +44,7 @@ let inputNumRuaC = document.querySelector("#numRua") as HTMLInputElement;
 let inputBairroC= document.querySelector("#bairro") as HTMLInputElement;
 let inputCidadeC = document.querySelector("#cidade") as HTMLInputElement;
 let inputFoneC = document.querySelector("#fone") as HTMLInputElement;
+let inputElement = document.querySelector('#residFile') as HTMLInputElement;
 let inputCnhC = document.querySelector("#cnh") as HTMLInputElement;
 let inputCatCnhC = document.querySelector("#categCnh") as HTMLInputElement;
 let inputDataCnhC = document.querySelector("#dataCnh") as HTMLInputElement;
@@ -85,6 +86,16 @@ function verificaCampos(): void {
     inputCadastroEmailC.removeAttribute('style');
     inputCadastroSenhaC.removeAttribute('style');
 
+ 
+
+    let residFile = inputElement.files;
+    let Meufile = new Blob;
+    if (residFile) {
+       Meufile = residFile[0];
+} else {
+ console.log("Nenhum arquivo foi selecionado");
+}
+
     let novoUsuario: Driver = {
         nome: inputCadastroNomeC.value,
         login: inputCadastroEmailC.value,
@@ -97,6 +108,7 @@ function verificaCampos(): void {
         bairro: inputBairroC.value,
         cidade: inputCidadeC.value,
         fone: inputFoneC.value,
+        residfile: Meufile,
         cnh: inputCnhC.value,
         categCnh: inputCatCnhC.value,
         dataCnh: inputDataCnhC.value,
@@ -116,6 +128,8 @@ let indiceDrv: string = "";
 function cadastrarUsuario(novoUsuario: Driver) {
     let listaUsuarios: Driver[] = buscarUsuariosNoStorage();
 
+    
+
     // for (let indice in listaUsuarios){
     //     indiceDrv = indice;
     // }
@@ -124,11 +138,11 @@ function cadastrarUsuario(novoUsuario: Driver) {
 
     // let listaDriver = listaUsuarios[indicDrvNumb];
 
-    let existe: boolean = listaUsuarios.some((usuario) => {
+    let existeUser: boolean = listaUsuarios.some((usuario) => {
         return usuario.login === novoUsuario.login ||  usuario.cpf === novoUsuario.cpf
     });
 
-    if (existe) {
+    if (existeUser) {
         let confirma = confirm("Usuário já está cadastrado. Deseja ir para a página de login?");
 
         if (confirma) {
@@ -137,6 +151,21 @@ function cadastrarUsuario(novoUsuario: Driver) {
         }
         return
     }
+
+    // let existeFile: boolean = listaUsuarios.some((file) => {
+    //     return file.residfile !== null;
+    // });
+
+    // if (existeFile) {
+    //     let confirma = confirm("Usuário já está cadastrado. Deseja ir para a página de login?");
+
+    //     if (confirma) {
+    //         container.classList.add('painel-direito-ativo');
+    //         formularioCadastro.reset();
+    //     }
+    //     return
+    // }
+
 
     listaUsuarios.push(novoUsuario);
     localStorage.setItem('dados-usuario', JSON.stringify(listaUsuarios));
